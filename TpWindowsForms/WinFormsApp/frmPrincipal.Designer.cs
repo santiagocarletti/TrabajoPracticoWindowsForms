@@ -35,6 +35,8 @@
             this.btnDetalle = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
+            this.dgvArticulos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -53,7 +55,7 @@
             this.btnListado.FlatAppearance.BorderSize = 3;
             this.btnListado.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListado.Location = new System.Drawing.Point(149, 119);
+            this.btnListado.Location = new System.Drawing.Point(35, 98);
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(144, 43);
             this.btnListado.TabIndex = 1;
@@ -66,7 +68,7 @@
             this.btnAgregar.FlatAppearance.BorderSize = 3;
             this.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Location = new System.Drawing.Point(149, 222);
+            this.btnAgregar.Location = new System.Drawing.Point(35, 221);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(144, 45);
             this.btnAgregar.TabIndex = 2;
@@ -79,7 +81,7 @@
             this.btnEliminar.FlatAppearance.BorderSize = 3;
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(149, 334);
+            this.btnEliminar.Location = new System.Drawing.Point(35, 345);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(144, 52);
             this.btnEliminar.TabIndex = 3;
@@ -92,7 +94,7 @@
             this.btnDetalle.FlatAppearance.BorderSize = 3;
             this.btnDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDetalle.Location = new System.Drawing.Point(481, 334);
+            this.btnDetalle.Location = new System.Drawing.Point(598, 345);
             this.btnDetalle.Name = "btnDetalle";
             this.btnDetalle.Size = new System.Drawing.Size(150, 52);
             this.btnDetalle.TabIndex = 4;
@@ -105,7 +107,7 @@
             this.btnBuscar.FlatAppearance.BorderSize = 3;
             this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Location = new System.Drawing.Point(478, 119);
+            this.btnBuscar.Location = new System.Drawing.Point(598, 98);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(153, 43);
             this.btnBuscar.TabIndex = 5;
@@ -118,12 +120,20 @@
             this.btnModificar.FlatAppearance.BorderSize = 3;
             this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.Location = new System.Drawing.Point(478, 222);
+            this.btnModificar.Location = new System.Drawing.Point(598, 221);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(153, 45);
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "MODIFICAR ";
             this.btnModificar.UseVisualStyleBackColor = true;
+            // 
+            // dgvArticulos
+            // 
+            this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArticulos.Location = new System.Drawing.Point(234, 140);
+            this.dgvArticulos.Name = "dgvArticulos";
+            this.dgvArticulos.Size = new System.Drawing.Size(306, 183);
+            this.dgvArticulos.TabIndex = 7;
             // 
             // frmPrincipal
             // 
@@ -131,6 +141,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnDetalle);
@@ -140,6 +151,8 @@
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmPrincipal";
             this.Text = "frmPrincipal";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +167,6 @@
         private System.Windows.Forms.Button btnDetalle;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.DataGridView dgvArticulos;
     }
 }

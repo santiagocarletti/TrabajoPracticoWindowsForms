@@ -17,7 +17,10 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
-
-      
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
+        }
     }
 }
