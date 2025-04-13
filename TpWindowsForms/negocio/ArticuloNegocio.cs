@@ -1,10 +1,9 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
-using dominio;
 
 namespace negocio
 {
@@ -13,50 +12,38 @@ namespace negocio
         public List<Articulo> listar()
         {
             List<Articulo> lista = new List<Articulo>();
-            SqlConnection conexion = new SqlConnection();
-            SqlCommand comando = new SqlCommand();
-            SqlDataReader lector;
+            AccesoBD datos = new AccesoBD();
 
             try
             {
-                //FRAN
-                //conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
-                //NICO
-                conexion.ConnectionString = "server=127.0.0.1,1433; database=CATALOGO_P3_DB; User ID=sa; Password=BaseDeDatos#2;";
+                datos.setearConsulta("Select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio from Articulos");
+                datos.ejecutarLectura();
 
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio from Articulos";
-                comando.Connection = conexion;
-
-                conexion.Open();
-                lector = comando.ExecuteReader();
-
-                while (lector.Read())
+                while (datos.Lectorbd.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.Id = (int)lector["Id"];
-                    aux.Codigo = (string)lector["Codigo"];
-                    aux.Nombre = (string)lector["Nombre"];
-                    aux.Descripcion = (string)lector["Descripcion"];
-                    aux.IdMarca = (int)lector["IdMarca"];
-                    aux.IdCategoria = (int)lector["IdCategoria"];
-                    aux.Precio = (decimal)lector["Precio"];
+
+                    aux.Id = (int)datos.Lectorbd["Id"];
+                    aux.Codigo = (string)datos.Lectorbd["Codigo"];
+                    aux.Nombre = (string)datos.Lectorbd["Nombre"];
+                    aux.Descripcion = (string)datos.Lectorbd["Descripcion"];
+                    aux.IdMarca = (int)datos.Lectorbd["IdMarca"];
+                    aux.IdCategoria = (int)datos.Lectorbd["IdCategoria"];
+                    aux.Precio = (decimal)datos.Lectorbd["Precio"];
 
                     lista.Add(aux);
-                    
                 }
 
-                conexion.Close();
                 return lista;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
-            
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
-
     }
 }
