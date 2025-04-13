@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp
 {
-    partial class Agregar
+    partial class frmAgregar
     {
         /// <summary>
         /// Required designer variable.

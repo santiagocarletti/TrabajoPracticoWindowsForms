@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using dominio;
 
-namespace WinFormsApp
+namespace negocio
 {
-    class ArticuloNegocio
+    public class ArticuloNegocio
     {
         public List<Articulo> listar()
         {
@@ -18,7 +19,11 @@ namespace WinFormsApp
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+                //FRAN
+                //conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true";
+                //NICO
+                conexion.ConnectionString = "server=127.0.0.1,1433; database=CATALOGO_P3_DB; User ID=sa; Password=BaseDeDatos#2;";
+
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "Select Id, Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio from Articulos";
                 comando.Connection = conexion;

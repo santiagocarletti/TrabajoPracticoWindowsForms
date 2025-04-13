@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WinFormsApp
 {
-    public partial class Agregar : Form
+    public partial class frmAgregar : Form
     {
-        public Agregar()
+        public frmAgregar()
         {
             InitializeComponent();
         }
