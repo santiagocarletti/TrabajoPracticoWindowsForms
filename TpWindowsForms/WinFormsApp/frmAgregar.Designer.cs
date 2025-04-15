@@ -58,6 +58,7 @@
             this.btnAceptar.TabIndex = 27;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // BotonExaminar
             // 
@@ -77,6 +78,7 @@
             this.btnCancelar.TabIndex = 29;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtImagen
             // 
@@ -215,7 +217,7 @@
             this.txtTitulo.TabIndex = 37;
             this.txtTitulo.Text = "Articulo";
             // 
-            // Agregar
+            // frmAgregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -239,8 +241,9 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.pbxArticulo);
-            this.Name = "Agregar";
+            this.Name = "frmAgregar";
             this.Text = "Agregar";
+            this.Load += new System.EventHandler(this.frmAgregar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

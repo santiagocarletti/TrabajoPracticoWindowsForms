@@ -24,5 +24,12 @@ namespace WinFormsApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             dgvArticulos.DataSource = negocio.listar();
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAgregar alta = new frmAgregar();
+            alta.ShowDialog();
+
+        }
     }
 }
