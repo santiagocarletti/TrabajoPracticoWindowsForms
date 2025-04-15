@@ -34,6 +34,10 @@ namespace WinFormsApp
                 articulo.Codigo = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
+                articulo.IdMarca = ((Marca)cboMarca.SelectedItem).Id;
+                articulo.IdCategoria = ((Categoria)cboCategoria.SelectedItem).Id;
+
+
 
                 negocio.agregar(articulo);
                 MessageBox.Show("Agregado exitosamente");
@@ -50,15 +54,22 @@ namespace WinFormsApp
 
         private void frmAgregar_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+           
             try
             {
-                cboMarca.DataSource = articuloNegocio.listar();
-                cboCategoria.DataSource = articuloNegocio.listar();
+
+                cboMarca.DataSource = marcaNegocio.listar();
+                cboMarca.DisplayMember = "Descripcion";
+
+                cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.DisplayMember = "Descripcion";
+
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                
             }
         }
     }
