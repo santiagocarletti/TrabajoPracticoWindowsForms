@@ -31,5 +31,16 @@ namespace WinFormsApp
             alta.ShowDialog();
 
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado;
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmModificar modificar = new frmModificar(seleccionado);
+                modificar.ShowDialog();
+            }
+        }
     }
 }
