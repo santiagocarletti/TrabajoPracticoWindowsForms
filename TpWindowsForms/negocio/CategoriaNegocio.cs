@@ -39,5 +39,48 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void Agregar(string nombreCategoria)
+        {
+            AccesoBD datos = new AccesoBD();
+            try
+            {
+                datos.setearConsulta("INSERT INTO CATEGORIAS (Descripcion) " +
+                                     "VALUES (@nombre)");
+
+                datos.setearParametro("@nombre", nombreCategoria);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Eliminar(int idCategoria)
+        {
+            AccesoBD datos = new AccesoBD();
+            try
+            {
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE Id = @id");
+
+                datos.setearParametro("@id", idCategoria);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

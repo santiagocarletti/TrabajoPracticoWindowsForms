@@ -121,5 +121,11 @@ namespace WinFormsApp
                 }
             }
         }
+
+        private void btnListado_Click(object sender, EventArgs e)
+        {
+            frmGestionar frmgestionar = new frmGestionar();
+            frmgestionar.ShowDialog();
+        }
     }
 }

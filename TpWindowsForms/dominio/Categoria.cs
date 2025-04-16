@@ -11,5 +11,10 @@ namespace dominio
         public int Id { get; set; }
         public string Descripcion { get; set; }
 
+        //override video "Leer Datos Relacionados en DB"
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }
