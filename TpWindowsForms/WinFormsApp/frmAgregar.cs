@@ -17,6 +17,7 @@ namespace WinFormsApp
         public frmAgregar()
         {
             InitializeComponent();
+            CargarControles();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -26,51 +27,94 @@ namespace WinFormsApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
+            if (!ValidarDatos())
             {
-                articulo.Codigo = txtCodigo.Text;
-                articulo.Codigo = txtNombre.Text;
-                articulo.Descripcion = txtDescripcion.Text;
-                articulo.Precio = decimal.Parse(txtPrecio.Text);
-                //articulo.IdMarca = ((Marca)cboMarca.SelectedItem).Id;
-                //articulo.IdCategoria = ((Categoria)cboCategoria.SelectedItem).Id;
-
-
-
-                negocio.agregar(articulo);
-                MessageBox.Show("Agregado exitosamente");
-                Close();
-
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                return;
             }
 
+            AgregarArticuloBD();
         }
 
-        private void frmAgregar_Load(object sender, EventArgs e)
+        private void AgregarArticuloBD()
         {
-            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            MarcaNegocio marcaNegocio = new MarcaNegocio();
-           
+            Articulo articulo = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            articulo.Codigo = txtCodigo.Text;
+            articulo.Nombre = txtNombre.Text;
+            articulo.Descripcion = txtDescripcion.Text;
+            articulo.Precio = decimal.Parse(txtPrecio.Text);
+            articulo.Marca = (Marca)cboMarca.SelectedItem;
+            articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
             try
             {
-
-                cboMarca.DataSource = marcaNegocio.listar();
-                cboMarca.DisplayMember = "Descripcion";
-
-                cboCategoria.DataSource = categoriaNegocio.listar();
-                cboCategoria.DisplayMember = "Descripcion";
-
+                negocio.agregar(articulo);
+                MessageBox.Show("Artículo agregado exitosamente");
+                Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+                MessageBox.Show("Error: " + ex);
             }
+        }
+
+        private void CargarControles()
+        {
+            MarcaNegocio mNegocio = new MarcaNegocio();
+            CategoriaNegocio cNegocio = new CategoriaNegocio();
+
+            cboMarca.DataSource = mNegocio.listar();
+            cboMarca.ValueMember = "Id";
+            cboMarca.DisplayMember = "Descripcion";
+
+            cboCategoria.DataSource = cNegocio.listar();
+            cboCategoria.ValueMember = "Id";
+            cboCategoria.DisplayMember = "Descripcion";
+        }
+
+        private void CargarImagen(string url)
+        {
+            try
+            {
+                pbxArticulo.Load(url);
+            }
+            catch (Exception)
+            {
+                pbxArticulo.Load("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930");
+            }
+        }
+
+        private bool ValidarDatos()
+        {
+            lblCamposObligatorios.Visible = false;
+
+            bool validado = true;
+
+            if (txtCodigo.Text == "")
+            {
+                lblCamposObligatorios.Visible = true;
+                validado = false;
+            }
+
+            if (txtNombre.Text == "")
+            {
+                lblCamposObligatorios.Visible = true;
+                validado = false;
+            }
+
+            if (!decimal.TryParse(txtPrecio.Text, out decimal _))
+            {
+                lblCamposObligatorios.Visible = true;
+                validado = false;
+            }
+
+            return validado;
+        }
+
+        private void txtImagen_Leave(object sender, EventArgs e)
+        {
+            CargarImagen(txtImagen.Text);
         }
     }
 }

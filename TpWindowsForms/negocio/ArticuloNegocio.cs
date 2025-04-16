@@ -72,15 +72,23 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-    
-        public void agregar (Articulo newArticulo)
+
+        public void agregar(Articulo newArticulo)
         {
             AccesoBD datos = new AccesoBD();
             try
             {
-                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio) VALUES ('" + newArticulo.Codigo + "', '" + newArticulo.Nombre + "', '" + newArticulo.Descripcion + "', " + newArticulo.Precio + ")");
-                datos.ejecutarAccion();
+                datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) " +
+                                     "VALUES (@codigo, @nombre, @descripcion, @precio, @idMarca, @idCategoria)");
 
+                datos.setearParametro("@codigo", newArticulo.Codigo);
+                datos.setearParametro("@nombre", newArticulo.Nombre);
+                datos.setearParametro("@descripcion", newArticulo.Descripcion);
+                datos.setearParametro("@precio", newArticulo.Precio);
+                datos.setearParametro("@idMarca", newArticulo.Marca.Id);
+                datos.setearParametro("@idCategoria", newArticulo.Categoria.Id);
+
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {

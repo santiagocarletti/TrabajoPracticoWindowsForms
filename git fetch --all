@@ -1,0 +1,90 @@
+[33mcommit 14a87349c8e836e9b552b03fdfe4b53477f5cdb1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Tue Apr 15 21:51:12 2025 -0300
+
+    Avances generales
+
+[33mcommit fb6389c7ec39547745778daafd05f4cff8a743ed[m
+Author: Nicolas Calcagno <calcagno.nico@gmail.com>
+Date:   Tue Apr 15 19:27:00 2025 -0300
+
+    Agregado URLImagenArticulo y comienzo de frmModificar
+
+[33mcommit 7afb8c2c6de63f833e93a5acce1d7c2cd6969b64[m
+Merge: 074839a 6b72e83
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Tue Apr 15 14:57:29 2025 -0300
+
+    Merge branch 'main' of https://github.com/santiagocarletti/TrabajoPracticoWindowsForms
+
+[33mcommit 074839a29d630eb6dc4aa08b3f5994f73b58d964[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Tue Apr 15 13:46:46 2025 -0300
+
+    Avances en Agregar: cboCategoria, cboMarca
+
+[33mcommit 6b72e8318ef94f10d0c231d6f71e2fd6df50d218[m
+Author: Santiago Carletti <carlettisantiago@gmail.com>
+Date:   Tue Apr 15 18:06:50 2025 +0200
+
+    Inicio funcionalidad buscar
+
+[33mcommit a52cd517aa69e0a01393974894ef8831baea0c94[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Tue Apr 15 09:10:01 2025 -0300
+
+    Inicio de agregar
+
+[33mcommit 2b1019502550b53db75b428c5b647836f2ecda87[m
+Author: Santiago Carletti <carlettisantiago@gmail.com>
+Date:   Tue Apr 15 11:19:09 2025 +0200
+
+    Reinclusión 'Articulo.cs'
+
+[33mcommit af9d7b4d44a1f226464c031158a03c4318ed5acc[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Sun Apr 13 19:04:59 2025 -0300
+
+    Implementacion de AccesoDB en ArticuloNegocio
+
+[33mcommit 6491d998ac0fe357a55ebcbfbaaaeb73cb999705[m
+Author: Nicolas Calcagno <calcagno.nico@gmail.com>
+Date:   Sun Apr 13 15:45:02 2025 -0300
+
+    Agregado AccesoBD, CategoriaNegocio, MarcaNegocio
+
+[33mcommit 07812ed18d0655f75d7a6194ed76d296f5761fe3[m
+Author: Nicolas Calcagno <calcagno.nico@gmail.com>
+Date:   Sun Apr 13 15:07:13 2025 -0300
+
+    Arquitectura en capas
+
+[33mcommit f1e53a6b33f46b37c21377cd8936fb73c8c3ce1d[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Sun Apr 13 12:51:15 2025 -0300
+
+    Configuracion de conexion a base de datos y agregado de dataGridView
+
+[33mcommit 6a932628c1ba12e6c32e8fefa2909414927b61ef[m
+Author: Nicolas Calcagno <calcagno.nico@gmail.com>
+Date:   Sat Apr 12 16:04:20 2025 -0300
+
+    Agregado Formulario de Articulo y Categoria
+
+[33mcommit 90e9bb63e2d7b7c4bdf68b44e4010e38febf3c86[m
+Author: fraanfolino <fran_fol@hotmail.com>
+Date:   Sat Apr 12 14:26:14 2025 -0300
+
+    Creacion de clase Marca e inicio de formulario principal
+
+[33mcommit 75acb12ac3bede1ce17d551129a7f9edc032fc09[m
+Author: Santiago Carletti <carlettisantiago@gmail.com>
+Date:   Sat Apr 12 15:57:25 2025 +0200
+
+    Comienzo desarrollo clase Articulo
+
+[33mcommit c3956f471d38ed0cbf1d80879054f397b8829d39[m
+Author: Santiago Carletti <111025122+santiagocarletti@users.noreply.github.com>
+Date:   Sat Apr 12 13:48:36 2025 +0200
+
+    Initial commit
