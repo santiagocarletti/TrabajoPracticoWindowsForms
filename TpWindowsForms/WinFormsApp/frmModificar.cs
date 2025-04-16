@@ -43,8 +43,8 @@ namespace WinFormsApp
             txtCodigo.Text = articulo.Codigo.ToString();
             txtNombre.Text = articulo.Nombre.ToString();
             txtDescripcion.Text = articulo.Descripcion.ToString();
-            cboCategoria.SelectedValue = articulo.Categoria;
-            cboMarca.SelectedValue = articulo.Marca;
+            cboCategoria.SelectedValue = articulo.Categoria.Id;
+            cboMarca.SelectedValue = articulo.Marca.Id;
             txtPrecio.Text = articulo.Precio.ToString();
             txtImagen.Text = articulo.Imagen;
             CargarImagen(articulo.Imagen);
@@ -62,11 +62,6 @@ namespace WinFormsApp
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (!(ChequearCambios(articulo)))
@@ -80,24 +75,30 @@ namespace WinFormsApp
                 return;
             }
 
-            MessageBox.Show("sin problemas");
+            ModificarArticuloBD();
         }
 
-        private void ModificarArticuloBD(Articulo articulo)
+        private void ModificarArticuloBD()
         {
-
             ArticuloNegocio negocio = new ArticuloNegocio();
-
             articulo.Codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDescripcion.Text;
             articulo.Imagen = txtImagen.Text;
-          //  articulo.IdCategoria = cboCategoria.SelectedIndex;
-          //  articulo.IdMarca = cboMarca.SelectedIndex;
-
-            negocio.modificar(articulo);
-
-
+            articulo.Marca = (Marca)cboMarca.SelectedItem;
+            articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+            articulo.Precio = (Convert.ToDecimal(txtPrecio.Text));
+            try
+            {
+                negocio.modificar(articulo);
+                MessageBox.Show("Articulo Modificado Exitosamente");
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex);
+                throw;
+            }
         }
 
         private bool ChequearCambios(Articulo articulo)
@@ -112,7 +113,6 @@ namespace WinFormsApp
             {
                 return false;
             }
-
             return true;
         }
 
@@ -159,6 +159,11 @@ namespace WinFormsApp
         private void txtImagen_Leave(object sender, EventArgs e)
         {
             CargarImagen(txtImagen.Text);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
     }

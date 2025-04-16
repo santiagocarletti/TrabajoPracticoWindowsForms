@@ -34,8 +34,8 @@ namespace WinFormsApp
                 articulo.Codigo = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
                 articulo.Precio = decimal.Parse(txtPrecio.Text);
-                articulo.IdMarca = ((Marca)cboMarca.SelectedItem).Id;
-                articulo.IdCategoria = ((Categoria)cboCategoria.SelectedItem).Id;
+                //articulo.IdMarca = ((Marca)cboMarca.SelectedItem).Id;
+                //articulo.IdCategoria = ((Categoria)cboCategoria.SelectedItem).Id;
 
 
 
