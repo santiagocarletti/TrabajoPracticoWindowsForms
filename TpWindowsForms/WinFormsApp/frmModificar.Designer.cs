@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.BotonExaminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtImagen = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -47,12 +46,16 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.txtTitulo = new System.Windows.Forms.Label();
+            this.lblErrorPrecio = new System.Windows.Forms.Label();
+            this.lblErrorCodigo = new System.Windows.Forms.Label();
+            this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.lblCamposObligatorios = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(100, 277);
+            this.btnAceptar.Location = new System.Drawing.Point(100, 291);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(89, 23);
             this.btnAceptar.TabIndex = 27;
@@ -60,19 +63,10 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // BotonExaminar
-            // 
-            this.BotonExaminar.Location = new System.Drawing.Point(337, 142);
-            this.BotonExaminar.Name = "BotonExaminar";
-            this.BotonExaminar.Size = new System.Drawing.Size(32, 20);
-            this.BotonExaminar.TabIndex = 23;
-            this.BotonExaminar.Text = "+";
-            this.BotonExaminar.UseVisualStyleBackColor = true;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(237, 277);
+            this.btnCancelar.Location = new System.Drawing.Point(237, 291);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(93, 23);
             this.btnCancelar.TabIndex = 29;
@@ -86,6 +80,7 @@
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(230, 20);
             this.txtImagen.TabIndex = 22;
+            this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
             // txtPrecio
             // 
@@ -217,14 +212,61 @@
             this.txtTitulo.TabIndex = 37;
             this.txtTitulo.Text = "Articulo";
             // 
-            // frmAgregar
+            // lblErrorPrecio
+            // 
+            this.lblErrorPrecio.AutoSize = true;
+            this.lblErrorPrecio.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorPrecio.Location = new System.Drawing.Point(230, 236);
+            this.lblErrorPrecio.Name = "lblErrorPrecio";
+            this.lblErrorPrecio.Size = new System.Drawing.Size(80, 13);
+            this.lblErrorPrecio.TabIndex = 38;
+            this.lblErrorPrecio.Text = "Campo Invalido";
+            this.lblErrorPrecio.Visible = false;
+            // 
+            // lblErrorCodigo
+            // 
+            this.lblErrorCodigo.AutoSize = true;
+            this.lblErrorCodigo.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorCodigo.Location = new System.Drawing.Point(227, 65);
+            this.lblErrorCodigo.Name = "lblErrorCodigo";
+            this.lblErrorCodigo.Size = new System.Drawing.Size(17, 13);
+            this.lblErrorCodigo.TabIndex = 39;
+            this.lblErrorCodigo.Text = "(*)";
+            this.lblErrorCodigo.Visible = false;
+            // 
+            // lblErrorNombre
+            // 
+            this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNombre.Location = new System.Drawing.Point(336, 91);
+            this.lblErrorNombre.Name = "lblErrorNombre";
+            this.lblErrorNombre.Size = new System.Drawing.Size(17, 13);
+            this.lblErrorNombre.TabIndex = 40;
+            this.lblErrorNombre.Text = "(*)";
+            this.lblErrorNombre.Visible = false;
+            // 
+            // lblCamposObligatorios
+            // 
+            this.lblCamposObligatorios.AutoSize = true;
+            this.lblCamposObligatorios.ForeColor = System.Drawing.Color.Red;
+            this.lblCamposObligatorios.Location = new System.Drawing.Point(101, 265);
+            this.lblCamposObligatorios.Name = "lblCamposObligatorios";
+            this.lblCamposObligatorios.Size = new System.Drawing.Size(116, 13);
+            this.lblCamposObligatorios.TabIndex = 41;
+            this.lblCamposObligatorios.Text = "(*) Campos Obligatorios";
+            this.lblCamposObligatorios.Visible = false;
+            // 
+            // frmModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 326);
+            this.Controls.Add(this.lblCamposObligatorios);
+            this.Controls.Add(this.lblErrorNombre);
+            this.Controls.Add(this.lblErrorCodigo);
+            this.Controls.Add(this.lblErrorPrecio);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.BotonExaminar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtImagen);
             this.Controls.Add(this.txtPrecio);
@@ -241,9 +283,11 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.pbxArticulo);
-            this.Name = "frmAgregar";
-            this.Text = "Agregar";
-            this.Load += new System.EventHandler(this.frmAgregar_Load);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "frmModificar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Modificar Articulo";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,7 +297,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button BotonExaminar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtImagen;
         private System.Windows.Forms.TextBox txtPrecio;
@@ -271,5 +314,9 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.Label txtTitulo;
+        private System.Windows.Forms.Label lblErrorPrecio;
+        private System.Windows.Forms.Label lblErrorCodigo;
+        private System.Windows.Forms.Label lblErrorNombre;
+        private System.Windows.Forms.Label lblCamposObligatorios;
     }
 }

@@ -20,15 +20,17 @@ namespace negocio
                     "A.Id, " +
                     "A.Codigo, " +
                     "A.Nombre, " +
-                    "A.Descripcion," +
-                    " A.IdMarca, " +
+                    "A.Descripcion, " +
+                    "A.IdMarca, " +
                     "A.IdCategoria, " +
                     "A.Precio, " +
-                    "I.ImagenUrl " +
-                    "FROM  " +
-                    "Articulos A " +
-                    "LEFT JOIN " +
-                    "IMAGENES I ON A.Id = I.IdArticulo");
+                    "(" +
+                        "SELECT TOP 1 ImagenUrl " +
+                        "FROM IMAGENES " +
+                        "WHERE IdArticulo = A.Id " +
+                        "ORDER BY ImagenUrl" +
+                    ") AS ImagenUrl " +
+                    "FROM Articulos A");
 
                 datos.ejecutarLectura();
 
@@ -40,9 +42,9 @@ namespace negocio
                     aux.Codigo = (string)datos.Lectorbd["Codigo"];
                     aux.Nombre = (string)datos.Lectorbd["Nombre"];
                     aux.Descripcion = (string)datos.Lectorbd["Descripcion"];
-                    aux.IdMarca = (int)datos.Lectorbd["IdMarca"];
-                    aux.IdCategoria = (int)datos.Lectorbd["IdCategoria"];
-                    aux.Precio = (decimal)datos.Lectorbd["Precio"];
+                    aux.Marca = (Marca)datos.Lectorbd["IdMarca"];
+                    aux.Categoria = (Categoria)datos.Lectorbd["IdCategoria"];
+                    aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
                     aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
                     lista.Add(aux);
                 }
@@ -77,6 +79,13 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+
+        public void modificar(Articulo articulo)
+        {
+
+        }
+
+
     }
 
 }
