@@ -30,7 +30,6 @@
         {
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtImagen = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.cboMarca = new System.Windows.Forms.ComboBox();
@@ -50,6 +49,9 @@
             this.lblErrorCodigo = new System.Windows.Forms.Label();
             this.lblErrorNombre = new System.Windows.Forms.Label();
             this.lblCamposObligatorios = new System.Windows.Forms.Label();
+            this.cboImagenes = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,14 +75,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // txtImagen
-            // 
-            this.txtImagen.Location = new System.Drawing.Point(100, 142);
-            this.txtImagen.Name = "txtImagen";
-            this.txtImagen.Size = new System.Drawing.Size(230, 20);
-            this.txtImagen.TabIndex = 22;
-            this.txtImagen.Leave += new System.EventHandler(this.txtImagen_Leave);
             // 
             // txtPrecio
             // 
@@ -195,7 +189,7 @@
             // 
             // pbxArticulo
             // 
-            this.pbxArticulo.Location = new System.Drawing.Point(375, 62);
+            this.pbxArticulo.Location = new System.Drawing.Point(381, 62);
             this.pbxArticulo.Name = "pbxArticulo";
             this.pbxArticulo.Size = new System.Drawing.Size(201, 189);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -256,11 +250,42 @@
             this.lblCamposObligatorios.Text = "(*) Campos Obligatorios";
             this.lblCamposObligatorios.Visible = false;
             // 
+            // cboImagenes
+            // 
+            this.cboImagenes.FormattingEnabled = true;
+            this.cboImagenes.Location = new System.Drawing.Point(100, 142);
+            this.cboImagenes.Name = "cboImagenes";
+            this.cboImagenes.Size = new System.Drawing.Size(230, 21);
+            this.cboImagenes.TabIndex = 42;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(336, 142);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(17, 21);
+            this.button1.TabIndex = 43;
+            this.button1.Text = "+";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.IndianRed;
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Location = new System.Drawing.Point(355, 142);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(20, 21);
+            this.button2.TabIndex = 44;
+            this.button2.Text = "x";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // frmModificar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 326);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cboImagenes);
             this.Controls.Add(this.lblCamposObligatorios);
             this.Controls.Add(this.lblErrorNombre);
             this.Controls.Add(this.lblErrorCodigo);
@@ -268,7 +293,6 @@
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.txtImagen);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.cboMarca);
@@ -299,7 +323,6 @@
 
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtImagen;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.ComboBox cboMarca;
@@ -319,5 +342,8 @@
         private System.Windows.Forms.Label lblErrorCodigo;
         private System.Windows.Forms.Label lblErrorNombre;
         private System.Windows.Forms.Label lblCamposObligatorios;
+        private System.Windows.Forms.ComboBox cboImagenes;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

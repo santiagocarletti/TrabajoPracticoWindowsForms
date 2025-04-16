@@ -46,8 +46,14 @@ namespace WinFormsApp
             cboCategoria.SelectedValue = articulo.Categoria.Id;
             cboMarca.SelectedValue = articulo.Marca.Id;
             txtPrecio.Text = articulo.Precio.ToString();
-            txtImagen.Text = articulo.Imagen;
-            CargarImagen(articulo.Imagen);
+
+            foreach(string Image in articulo.Imagen)
+            {
+                cboImagenes.Items.Add(Image);
+            }
+
+            cboImagenes.SelectedIndex = 0;
+            CargarImagen(articulo.Imagen[0]);
         }
 
         private void CargarImagen(string url)
@@ -84,7 +90,7 @@ namespace WinFormsApp
             articulo.Codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDescripcion.Text;
-            articulo.Imagen = txtImagen.Text;
+          //  articulo.Imagen = txtImagen.Text;
             articulo.Marca = (Marca)cboMarca.SelectedItem;
             articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
             articulo.Precio = (Convert.ToDecimal(txtPrecio.Text));
@@ -103,13 +109,13 @@ namespace WinFormsApp
 
         private bool ChequearCambios(Articulo articulo)
         {
+            //falta comparar la edicion de las imagenes
             if (txtCodigo.Text == articulo.Codigo &&
                 txtNombre.Text == articulo.Nombre &&
                 txtDescripcion.Text == articulo.Descripcion &&
                 (int)cboCategoria.SelectedValue == articulo.Categoria.Id &&
                 (int)cboMarca.SelectedValue == articulo.Marca.Id &&
-                txtPrecio.Text == articulo.Precio.ToString() &&
-                txtImagen.Text == articulo.Imagen)
+                txtPrecio.Text == articulo.Precio.ToString())
             {
                 return false;
             }
@@ -158,7 +164,7 @@ namespace WinFormsApp
 
         private void txtImagen_Leave(object sender, EventArgs e)
         {
-            CargarImagen(txtImagen.Text);
+            CargarImagen(cboImagenes.Text);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

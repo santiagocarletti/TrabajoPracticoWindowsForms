@@ -26,38 +26,64 @@ namespace negocio
                     "C.Descripcion AS Categoria, " +
                     "M.Id AS IdMarca, " +
                     "M.Descripcion AS Marca, " +
-                    "(" +
-                        "SELECT TOP 1 ImagenUrl " +
-                        "FROM IMAGENES " +
-                        "WHERE IdArticulo = A.Id " +
-                        "ORDER BY ImagenUrl" +
-                    ") AS ImagenUrl " +
+                    "I.ImagenUrl " +
                     "FROM Articulos A " +
-                    "JOIN Categorias C ON A.IdCategoria = C.Id " +
-                    "JOIN Marcas M ON A.IdMarca = M.Id");
+                    "LEFT JOIN Categorias C ON A.IdCategoria = C.Id " +
+                    "LEFT JOIN Marcas M ON A.IdMarca = M.Id " +
+                    "LEFT JOIN Imagenes I ON I.IdArticulo = A.Id " +
+                    "ORDER BY A.Id, I.ImagenUrl");
 
                 datos.ejecutarLectura();
+
+                int IdUltimoarticulo = 0;
 
                 while (datos.Lectorbd.Read())
                 {
                     Articulo aux = new Articulo();
+                    aux.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
 
-                    aux.Id = (int)datos.Lectorbd["Id"];
-                    aux.Codigo = (string)datos.Lectorbd["Codigo"];
-                    aux.Nombre = (string)datos.Lectorbd["Nombre"];
-                    aux.Descripcion = (string)datos.Lectorbd["Descripcion"];
+                    if (aux.Id == IdUltimoarticulo)
+                    {
+                        lista[IdUltimoarticulo - 1].Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                        continue;
+                    }
 
+                    aux.Codigo = Convert.ToString(datos.Lectorbd["Codigo"]);
+                    aux.Nombre = Convert.ToString(datos.Lectorbd["Nombre"]);
+                    aux.Descripcion = Convert.ToString(datos.Lectorbd["Descripcion"]);
 
                     aux.Marca = new Marca();
-                    aux.Marca.Id = (int)datos.Lectorbd["IdMarca"];
-                    aux.Marca.Descripcion = (string)datos.Lectorbd["Marca"];
+
+                    if (datos.Lectorbd["IdMarca"] != DBNull.Value)
+                    {
+                        aux.Marca.Id = Convert.ToInt32(datos.Lectorbd["IdMarca"]);
+                        aux.Marca.Descripcion = Convert.ToString(datos.Lectorbd["Marca"]);
+                    }
+                    else
+                    {
+                        aux.Marca.Id = 0;
+                        //aux.Marca.Descripcion = "Sin Descripcion";
+                    }
 
                     aux.Categoria = new Categoria();
-                    aux.Categoria.Id = (int)datos.Lectorbd["IdCategoria"];
-                    aux.Categoria.Descripcion = (string)datos.Lectorbd["Categoria"];
 
-                    aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
-                    aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
+                    if (datos.Lectorbd["IdCategoria"] != DBNull.Value)
+                    {
+                        aux.Categoria.Id = Convert.ToInt32(datos.Lectorbd["IdCategoria"]);
+                        aux.Categoria.Descripcion = Convert.ToString(datos.Lectorbd["Categoria"]);
+                    }
+                    else
+                    {
+                        aux.Categoria.Id = 0;
+                        //aux.Categoria.Descripcion = "Sin Categoria";
+                    }
+
+                    aux.Precio = Decimal.Round(Convert.ToDecimal(datos.Lectorbd["Precio"]), 2);
+
+                    aux.Imagen = new List<string>();
+                    aux.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                    IdUltimoarticulo = aux.Id;
+
                     lista.Add(aux);
                 }
 
@@ -124,12 +150,16 @@ namespace negocio
                 datosTablaArticulos.ejecutarAccion();
                 datosTablaArticulos.cerrarConexion();
 
-                AccesoBD datosTablaImagenes = new AccesoBD();
-                datosTablaImagenes.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @imagenurl WHERE IdArticulo = @idarticulo");
-                datosTablaImagenes.setearParametro("@imagenurl", articulo.Imagen);
-                datosTablaImagenes.setearParametro("@idarticulo", articulo.Id);
-                datosTablaImagenes.ejecutarAccion();
-                datosTablaImagenes.cerrarConexion();
+                foreach (string imagen in articulo.Imagen)
+                {
+                    AccesoBD datosTablaImagenes = new AccesoBD();
+                    datosTablaImagenes.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @imagenurl WHERE IdArticulo = @idarticulo");
+                    datosTablaImagenes.setearParametro("@imagenurl", articulo.Imagen);
+                    datosTablaImagenes.setearParametro("@idarticulo", articulo.Id);
+                    datosTablaImagenes.ejecutarAccion();
+                    datosTablaImagenes.cerrarConexion();
+                }
+
             }
             catch (Exception)
             {
