@@ -155,16 +155,21 @@ namespace negocio
                 datosTablaArticulos.ejecutarAccion();
                 datosTablaArticulos.cerrarConexion();
 
+                AccesoBD datosBorrarImagenes = new AccesoBD();
+                datosBorrarImagenes.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @idarticulo");
+                datosBorrarImagenes.setearParametro("@idarticulo", articulo.Id);
+                datosBorrarImagenes.ejecutarAccion();
+                datosBorrarImagenes.cerrarConexion();
+
                 foreach (string imagen in articulo.Imagen)
                 {
                     AccesoBD datosTablaImagenes = new AccesoBD();
-                    datosTablaImagenes.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @imagenurl WHERE IdArticulo = @idarticulo");
-                    datosTablaImagenes.setearParametro("@imagenurl", articulo.Imagen);
+                    datosTablaImagenes.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idarticulo, @imagenurl)");
+                    datosTablaImagenes.setearParametro("@imagenurl", imagen);
                     datosTablaImagenes.setearParametro("@idarticulo", articulo.Id);
                     datosTablaImagenes.ejecutarAccion();
                     datosTablaImagenes.cerrarConexion();
                 }
-
             }
             catch (Exception)
             {

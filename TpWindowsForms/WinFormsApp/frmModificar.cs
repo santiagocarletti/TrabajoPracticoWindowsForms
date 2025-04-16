@@ -47,13 +47,24 @@ namespace WinFormsApp
             cboMarca.SelectedValue = articulo.Marca.Id;
             txtPrecio.Text = articulo.Precio.ToString();
 
-            foreach(string Image in articulo.Imagen)
+            CargarListaImagenes();
+
+            if (cboImagenes.Items.Count > 0)
+            { 
+                cboImagenes.SelectedIndex = 0;
+                CargarImagen(articulo.Imagen[0]);
+            }         
+        }
+
+        private void CargarListaImagenes()
+        {
+            cboImagenes.Items.Clear();
+            cboImagenes.Text = "";
+
+            foreach (string Image in articulo.Imagen)
             {
                 cboImagenes.Items.Add(Image);
             }
-
-            cboImagenes.SelectedIndex = 0;
-            CargarImagen(articulo.Imagen[0]);
         }
 
         private void CargarImagen(string url)
@@ -68,13 +79,84 @@ namespace WinFormsApp
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+
+
+
+
+
+        private void txtImagen_Leave(object sender, EventArgs e)
         {
-            if (!(ChequearCambios(articulo)))
+            CargarImagen(cboImagenes.Text);
+        }
+
+        private void btnEliminarImagen_Click(object sender, EventArgs e)
+        {
+            if (articulo.Imagen.Count == 0)
             {
-                Close();
                 return;
             }
+            
+            int indice = cboImagenes.SelectedIndex;
+            articulo.Imagen.RemoveAt(indice);
+
+            CargarListaImagenes();
+
+            if (cboImagenes.Items.Count > 0)
+            { 
+                cboImagenes.SelectedIndex = 0; 
+            }
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (txtImagen.Text == "")
+            { return; }
+
+            foreach (string image in articulo.Imagen)
+            {
+                if (image == txtImagen.Text)
+                {
+                    cboImagenes.SelectedItem = txtImagen.Text;
+                    return;
+                }
+            }
+
+            articulo.Imagen.Add(txtImagen.Text);
+            CargarListaImagenes();
+            cboImagenes.SelectedItem = txtImagen.Text;
+            txtImagen.Clear();
+            CargarImagen(cboImagenes.SelectedItem.ToString());
+        }
+
+        private void cboImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarImagen(cboImagenes.SelectedItem.ToString());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            //if (!(ChequearCambios(articulo)))
+            //{
+            //    Close();
+            //    MessageBox.Show("No hubo cambios");
+            //    return;
+            //}
 
             if (!ValidarDatos())
             {
@@ -90,10 +172,10 @@ namespace WinFormsApp
             articulo.Codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDescripcion.Text;
-          //  articulo.Imagen = txtImagen.Text;
             articulo.Marca = (Marca)cboMarca.SelectedItem;
             articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
             articulo.Precio = (Convert.ToDecimal(txtPrecio.Text));
+
             try
             {
                 negocio.modificar(articulo);
@@ -107,21 +189,17 @@ namespace WinFormsApp
             }
         }
 
-        private bool ChequearCambios(Articulo articulo)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            //falta comparar la edicion de las imagenes
-            if (txtCodigo.Text == articulo.Codigo &&
-                txtNombre.Text == articulo.Nombre &&
-                txtDescripcion.Text == articulo.Descripcion &&
-                (int)cboCategoria.SelectedValue == articulo.Categoria.Id &&
-                (int)cboMarca.SelectedValue == articulo.Marca.Id &&
-                txtPrecio.Text == articulo.Precio.ToString())
-            {
-                return false;
-            }
-            return true;
+            Close();
         }
 
+
+
+
+
+
+        //VALIDACIONES:
         private bool ValidarDatos()
         {
             lblCamposObligatorios.Visible = false;
@@ -162,19 +240,32 @@ namespace WinFormsApp
                 return false;
         }
 
-        private void txtImagen_Leave(object sender, EventArgs e)
+        private bool ChequearCambios(Articulo articulo)
         {
-            CargarImagen(cboImagenes.Text);
+            if (txtCodigo.Text == articulo.Codigo &&
+                txtNombre.Text == articulo.Nombre &&
+                txtDescripcion.Text == articulo.Descripcion &&
+                (int)cboCategoria.SelectedValue == articulo.Categoria.Id &&
+                (int)cboMarca.SelectedValue == articulo.Marca.Id &&
+                txtPrecio.Text == articulo.Precio.ToString())
+            {
+
+                if (articulo.Imagen.Count != cboImagenes.Items.Count)
+                { return false; }
+
+                int contador = 0;
+
+                foreach (var imagen in cboImagenes.Items)
+                {
+                    if (imagen.ToString() != articulo.Imagen[contador])
+                    { return true; }
+                    contador++;
+                }
+
+                return false;
+            }
+            return true;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void frmModificar_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
