@@ -59,6 +59,7 @@ namespace negocio
             conexionbd.Close();
         }
 
+
         public void ejecutarAccion()
         {
             comando.Connection = conexionbd;
@@ -86,5 +87,26 @@ namespace negocio
                 throw ex;
             }
         }
+
+        public void limpiarParametros()
+        {
+            comando.Parameters.Clear();
+        }
+
+
+        //este es para seguir mandandp inserts o acciones sin cerrar la conexion
+        public void ejecutarMasAcciones()
+        {
+            try
+            {
+                comando.Connection = conexionbd;
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

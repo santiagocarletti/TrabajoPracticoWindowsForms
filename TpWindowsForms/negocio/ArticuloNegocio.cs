@@ -133,9 +133,10 @@ namespace negocio
 
         public void modificar(Articulo articulo)
         {
+            AccesoBD datosTablaArticulos = new AccesoBD();
+
             try
             {
-                AccesoBD datosTablaArticulos = new AccesoBD();
                 datosTablaArticulos.setearConsulta("UPDATE ARTICULOS SET " +
                     "Codigo = @codigo, " +
                     "Nombre = @nombre, " +
@@ -153,31 +154,34 @@ namespace negocio
                 datosTablaArticulos.setearParametro("@idcategoria", articulo.Categoria.Id);
                 datosTablaArticulos.setearParametro("@precio", articulo.Precio);
                 datosTablaArticulos.ejecutarAccion();
-                datosTablaArticulos.cerrarConexion();
+                datosTablaArticulos.limpiarParametros();
 
-                AccesoBD datosBorrarImagenes = new AccesoBD();
-                datosBorrarImagenes.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @idarticulo");
-                datosBorrarImagenes.setearParametro("@idarticulo", articulo.Id);
-                datosBorrarImagenes.ejecutarAccion();
-                datosBorrarImagenes.cerrarConexion();
+                datosTablaArticulos.setearConsulta("DELETE FROM IMAGENES WHERE IdArticulo = @idarticulo");
+                datosTablaArticulos.setearParametro("@idarticulo", articulo.Id);
+                datosTablaArticulos.ejecutarMasAcciones();
+                datosTablaArticulos.limpiarParametros();
 
                 foreach (string imagen in articulo.Imagen)
                 {
-                    AccesoBD datosTablaImagenes = new AccesoBD();
-                    datosTablaImagenes.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idarticulo, @imagenurl)");
-                    datosTablaImagenes.setearParametro("@imagenurl", imagen);
-                    datosTablaImagenes.setearParametro("@idarticulo", articulo.Id);
-                    datosTablaImagenes.ejecutarAccion();
-                    datosTablaImagenes.cerrarConexion();
+                    if (imagen == "")
+                    { continue; }
+
+                    datosTablaArticulos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idarticulo, @imagenurl)");
+                    datosTablaArticulos.setearParametro("@imagenurl", imagen);
+                    datosTablaArticulos.setearParametro("@idarticulo", articulo.Id);
+                    datosTablaArticulos.ejecutarMasAcciones();
+                    datosTablaArticulos.limpiarParametros();
                 }
             }
             catch (Exception)
             {
                 throw;
             }
+            finally
+            {
+                datosTablaArticulos.cerrarConexion();
+            }
         }
-
-
     }
 
 }
