@@ -67,6 +67,7 @@ namespace negocio
 
                     aux.Categoria = new Categoria();
 
+<<<<<<< HEAD
                     if (datos.Lectorbd["IdCategoria"] != DBNull.Value)
                     {
                         aux.Categoria.Id = Convert.ToInt32(datos.Lectorbd["IdCategoria"]);
@@ -84,6 +85,12 @@ namespace negocio
                     aux.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
                     IdUltimoarticulo = aux.Id;
 
+=======
+                    aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
+                    aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
+                    //SANTIAGO
+                    //aux.Imagen = Convert.ToString(datos.Lectorbd["ImagenUrl"]);
+>>>>>>> 48b2adde9c401d9a49f0ba2d79ebe38b958517f6
                     lista.Add(aux);
                 }
 
