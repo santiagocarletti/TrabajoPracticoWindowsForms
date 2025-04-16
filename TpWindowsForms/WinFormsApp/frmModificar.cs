@@ -91,20 +91,19 @@ namespace WinFormsApp
 
         private void btnEliminarImagen_Click(object sender, EventArgs e)
         {
-            if (articulo.Imagen.Count == 0)
+            if (cboImagenes.Items.Count == 0)
             {
                 return;
             }
             
             int indice = cboImagenes.SelectedIndex;
-            articulo.Imagen.RemoveAt(indice);
-
-            CargarListaImagenes();
+            cboImagenes.Items.RemoveAt(indice);
 
             if (cboImagenes.Items.Count > 0)
-            { 
-                cboImagenes.SelectedIndex = 0; 
+            {
+                cboImagenes.SelectedIndex = 0;
             }
+
         }
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
@@ -121,11 +120,16 @@ namespace WinFormsApp
                 }
             }
 
-            articulo.Imagen.Add(txtImagen.Text);
-            CargarListaImagenes();
+            cboImagenes.Items.Add(txtImagen.Text);
             cboImagenes.SelectedItem = txtImagen.Text;
             txtImagen.Clear();
             CargarImagen(cboImagenes.SelectedItem.ToString());
+
+
+            //articulo.Imagen.Add(txtImagen.Text);
+            //CargarListaImagenes();
+
+
         }
 
         private void cboImagenes_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,29 +138,14 @@ namespace WinFormsApp
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            //if (!(ChequearCambios(articulo)))
-            //{
-            //    Close();
-            //    MessageBox.Show("No hubo cambios");
-            //    return;
-            //}
+            if (!(ChequearCambios(articulo)))
+            {
+                Close();
+                MessageBox.Show("No hubo cambios");
+                return;
+            }
 
             if (!ValidarDatos())
             {
@@ -175,6 +164,12 @@ namespace WinFormsApp
             articulo.Marca = (Marca)cboMarca.SelectedItem;
             articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
             articulo.Precio = (Convert.ToDecimal(txtPrecio.Text));
+            articulo.Imagen.Clear();
+
+            foreach (string imagen in cboImagenes.Items)
+            {
+                articulo.Imagen.Add(imagen);
+            }
 
             try
             {
@@ -251,7 +246,7 @@ namespace WinFormsApp
             {
 
                 if (articulo.Imagen.Count != cboImagenes.Items.Count)
-                { return false; }
+                { return true; }
 
                 int contador = 0;
 
