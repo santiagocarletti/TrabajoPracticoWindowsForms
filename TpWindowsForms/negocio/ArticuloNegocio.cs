@@ -58,6 +58,8 @@ namespace negocio
 
                     aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
                     aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
+                    //SANTIAGO
+                    //aux.Imagen = Convert.ToString(datos.Lectorbd["ImagenUrl"]);
                     lista.Add(aux);
                 }
 
