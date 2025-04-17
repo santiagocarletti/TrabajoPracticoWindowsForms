@@ -127,5 +127,21 @@ namespace WinFormsApp
             frmGestionar frmgestionar = new frmGestionar();
             frmgestionar.ShowDialog();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                negocio.eliminar(seleccionado.Id);
+               
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }

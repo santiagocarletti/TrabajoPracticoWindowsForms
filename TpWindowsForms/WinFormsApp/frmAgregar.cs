@@ -71,7 +71,7 @@ namespace WinFormsApp
 
             if (string.IsNullOrEmpty(nuevaImagen))
             {
-                MessageBox.Show("Por favor, introduce una URL válida.");
+                MessageBox.Show("Por favor, introduce una URL valida.");
                 return;
             }
 

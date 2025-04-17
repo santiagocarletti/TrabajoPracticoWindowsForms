@@ -67,7 +67,7 @@
             this.btnListado.TabIndex = 1;
             this.btnListado.Text = "OPCIONES";
             this.btnListado.UseVisualStyleBackColor = true;
-            this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
+            
             // 
             // btnAgregar
             // 
@@ -95,6 +95,7 @@
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnDetalle
             // 
