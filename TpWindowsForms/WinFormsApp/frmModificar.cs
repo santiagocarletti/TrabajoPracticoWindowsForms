@@ -262,5 +262,9 @@ namespace WinFormsApp
             return true;
         }
 
+        private void frmModificar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
