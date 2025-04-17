@@ -112,5 +112,10 @@ namespace WinFormsApp
         {
             lblErrorMarca.Visible = false;
         }
+
+        private void frmGestionar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

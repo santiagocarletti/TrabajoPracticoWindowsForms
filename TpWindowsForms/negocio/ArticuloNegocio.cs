@@ -42,7 +42,7 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
 
-                    if (aux.Id == IdUltimoarticulo)
+                    if (aux.Id == IdUltimoarticulo && lista.Count > IdUltimoarticulo - 1)
                     {
                         lista[IdUltimoarticulo - 1].Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
                         continue;

@@ -19,6 +19,28 @@ namespace WinFormsApp
             InitializeComponent();
         }
 
+        private void cargar()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                dgvArticulos.DataSource = negocio.listar(); 
+                ocultarColumnas(); 
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al cargar los artículos: " + ex.Message);
+            }
+        }
+
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["Id"].Visible = true; 
+             
+        }
+
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
@@ -131,17 +153,33 @@ namespace WinFormsApp
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            Articulo seleccionado;
             try
             {
-                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            
+            
+                DialogResult respuesta = MessageBox.Show(
+                    "¿Estás seguro de que deseas eliminar este artículo?",
+                    "Confirmación de eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (respuesta == DialogResult.No)
+                {
+                    return; 
+                }
+
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 negocio.eliminar(seleccionado.Id);
-               
+
+                cargar(); 
+                MessageBox.Show("Artículo eliminado correctamente.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Ocurrio un error al eliminar el articulo: " + ex.ToString());
             }
         }
+        }
     }
-}
+
