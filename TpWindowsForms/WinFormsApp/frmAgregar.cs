@@ -75,17 +75,7 @@ namespace WinFormsApp
                 return;
             }
 
-           
-            foreach (string imagen in articulo.Imagen)
-            {
-                if (imagen.Equals(nuevaImagen, StringComparison.OrdinalIgnoreCase))
-                {
-                    MessageBox.Show("La URL ya está en la lista.");
-                    cboImagenes.SelectedItem = nuevaImagen;
-                    return;
-                }
-            }
-
+            
             articulo.Imagen.Add(nuevaImagen);
             CargarListaImagenes();
 
