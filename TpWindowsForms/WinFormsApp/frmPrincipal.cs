@@ -24,9 +24,9 @@ namespace WinFormsApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                dgvArticulos.DataSource = negocio.listar(); 
-                ocultarColumnas(); 
-                
+                dgvArticulos.DataSource = negocio.listar();
+                ocultarColumnas();
+
             }
             catch (Exception ex)
             {
@@ -37,8 +37,8 @@ namespace WinFormsApp
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["Id"].Visible = true; 
-             
+            dgvArticulos.Columns["Id"].Visible = true;
+
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -90,58 +90,23 @@ namespace WinFormsApp
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string campo = cboCampo.SelectedItem.ToString();
-            string criterio = cboCriterio.SelectedItem.ToString();
-            string filtro = txtFiltroAvanzado.Text.ToString();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text.ToString();
+
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             string consulta;
 
-            if (campo == "Precio")
-            {
-                decimal valorFiltro = decimal.Parse(txtFiltroAvanzado.Text);
-                if (criterio == "Mayor a")
-                {
-                    consulta = "SELECT * FROM ARTICULOS WHERE Precio > " + valorFiltro;
-                }
-                else if (criterio == "Menor a")
-                {
-                    consulta = "SELECT * FROM ARTICULOS WHERE Precio < " + valorFiltro;
-                }
-                else
-                {
-                    consulta = "SELECT * FROM ARTICULOS WHERE Precio = " + valorFiltro;
-                }
-            }
-            else if (campo == "Marca")
-            {
-                if (criterio == "Comienza con")
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE M.Descripcion LIKE '" + criterio + "%'";
-                }
-                else if (criterio == "Termina con")
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE M.Descripcion LIKE '%" + criterio + "'";
-                }
-                else
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE M.Descripcion LIKE '%" + criterio + "%'";
-                }
-            }
-            else
-            {
-                //El criterio es Nombre
-                if (criterio == "Comienza con")
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE A.Nombre LIKE '" + criterio + "%'";
-                }
-                else if (criterio == "Termina con")
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE A.Nombre LIKE '%" + criterio + "'";
-                }
-                else
-                {
-                    consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.Descripcion AS Marca FROM ARTICULOS A JOIN MARCAS M ON A.IdMarca = M.Id WHERE A.Nombre LIKE '%" + criterio + "%'";
-                }
-            }
         }
 
         private void btnListado_Click(object sender, EventArgs e)
@@ -155,8 +120,8 @@ namespace WinFormsApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-            
-            
+
+
                 DialogResult respuesta = MessageBox.Show(
                     "¿Estás seguro de que deseas eliminar este artículo?",
                     "Confirmación de eliminación",
@@ -166,13 +131,13 @@ namespace WinFormsApp
 
                 if (respuesta == DialogResult.No)
                 {
-                    return; 
+                    return;
                 }
 
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 negocio.eliminar(seleccionado.Id);
 
-                cargar(); 
+                cargar();
                 MessageBox.Show("Artículo eliminado correctamente.");
             }
             catch (Exception ex)
@@ -180,6 +145,5 @@ namespace WinFormsApp
                 MessageBox.Show("Ocurrio un error al eliminar el articulo: " + ex.ToString());
             }
         }
-        }
     }
-
+}
