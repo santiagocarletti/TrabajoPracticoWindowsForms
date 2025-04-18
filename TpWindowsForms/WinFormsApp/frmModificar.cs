@@ -43,8 +43,9 @@ namespace WinFormsApp
             txtCodigo.Text = articulo.Codigo.ToString();
             txtNombre.Text = articulo.Nombre.ToString();
             txtDescripcion.Text = articulo.Descripcion.ToString();
-            cboCategoria.SelectedValue = articulo.Categoria.Id;
-            cboMarca.SelectedValue = articulo.Marca.Id;
+            //por si es null con ternario le pongo 0
+            cboCategoria.SelectedValue = articulo.Categoria != null ? articulo.Categoria.Id : 0;
+            cboMarca.SelectedValue = articulo.Marca != null ? articulo.Marca.Id : 0;
             txtPrecio.Text = articulo.Precio.ToString();
 
             CargarListaImagenes();
@@ -240,11 +241,21 @@ namespace WinFormsApp
             if (txtCodigo.Text == articulo.Codigo &&
                 txtNombre.Text == articulo.Nombre &&
                 txtDescripcion.Text == articulo.Descripcion &&
-                (int)cboCategoria.SelectedValue == articulo.Categoria.Id &&
-                (int)cboMarca.SelectedValue == articulo.Marca.Id &&
                 txtPrecio.Text == articulo.Precio.ToString())
             {
 
+                if (cboCategoria.SelectedValue != null && 
+                    (int)cboCategoria.SelectedValue != articulo.Categoria.Id)
+                {
+                    return true;
+                }
+
+                if (cboMarca.SelectedValue != null &&
+                    (int)cboMarca.SelectedValue != articulo.Marca.Id)
+                {
+                    return true;
+                }
+  
                 if (articulo.Imagen.Count != cboImagenes.Items.Count)
                 { return true; }
 

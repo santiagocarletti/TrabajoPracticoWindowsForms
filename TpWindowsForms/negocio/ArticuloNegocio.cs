@@ -137,22 +137,58 @@ namespace negocio
 
             try
             {
-                datosTablaArticulos.setearConsulta("UPDATE ARTICULOS SET " +
-                    "Codigo = @codigo, " +
-                    "Nombre = @nombre, " +
-                    "Descripcion = @descripcion, " +
-                    "IdMarca = @idmarca, " +
-                    "IdCategoria = @idcategoria, " +
-                    "Precio = @precio " +
-                    "WHERE Id = @id");
+                //Esta era la consulta original antes de agregar la posibilidad de borrar las marcas y categorias
 
+                        //datosTablaArticulos.setearConsulta("UPDATE ARTICULOS SET " +
+                        //    "Codigo = @codigo, " +
+                        //    "Nombre = @nombre, " +
+                        //    "Descripcion = @descripcion, " +
+                        //    "IdMarca = @idmarca, " +
+                        //    "IdCategoria = @idcategoria, " +
+                        //    "Precio = @precio " +
+                        //    "WHERE Id = @id");
+
+
+                //SE CAMBIO POR SI esta null la marca o la categoria, (si fuer borrada), entonces para q no se mande a la bd 
+
+                string consulta = "UPDATE ARTICULOS SET " +
+                                  "Codigo = @codigo, " +
+                                  "Nombre = @nombre, " +
+                                  "Descripcion = @descripcion, ";
+
+                if (articulo.Marca != null)
+                {
+                    consulta += "IdMarca = @idmarca, ";
+                }
+
+                if (articulo.Categoria != null)
+                {   
+                    consulta += "IdCategoria = @idcategoria, ";
+                }
+
+                consulta += "Precio = @precio " + "WHERE Id = @id";
+
+                datosTablaArticulos.setearConsulta(consulta);
                 datosTablaArticulos.setearParametro("@id", articulo.Id);
                 datosTablaArticulos.setearParametro("@codigo", articulo.Codigo);
                 datosTablaArticulos.setearParametro("@nombre", articulo.Nombre);
                 datosTablaArticulos.setearParametro("@descripcion", articulo.Descripcion);
-                datosTablaArticulos.setearParametro("@idmarca", articulo.Marca.Id);
-                datosTablaArticulos.setearParametro("@idcategoria", articulo.Categoria.Id);
                 datosTablaArticulos.setearParametro("@precio", articulo.Precio);
+
+                //CONSULTA ORIGINAL
+                //datosTablaArticulos.setearParametro("@idmarca", articulo.Marca.Id);
+                //datosTablaArticulos.setearParametro("@idcategoria", articulo.Categoria.Id);
+
+                if (articulo.Marca != null)
+                {
+                    datosTablaArticulos.setearParametro("@idmarca", articulo.Marca.Id);
+                }
+                
+                if (articulo.Categoria != null)
+                {
+                    datosTablaArticulos.setearParametro("@idcategoria", articulo.Categoria.Id);
+                }
+
                 datosTablaArticulos.ejecutarAccion();
                 datosTablaArticulos.limpiarParametros();
 
