@@ -42,6 +42,7 @@
             this.lblCriterio = new System.Windows.Forms.Label();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.lblCampo = new System.Windows.Forms.Label();
+            this.btnOpciones = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,9 +66,9 @@
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(144, 43);
             this.btnListado.TabIndex = 1;
-            this.btnListado.Text = "OPCIONES";
+            this.btnListado.Text = "LISTAR";
             this.btnListado.UseVisualStyleBackColor = true;
-            
+            this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
             // 
             // btnAgregar
             // 
@@ -207,12 +208,27 @@
             this.lblCampo.TabIndex = 13;
             this.lblCampo.Text = "CAMPO:";
             // 
+            // btnOpciones
+            // 
+            this.btnOpciones.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnOpciones.FlatAppearance.BorderSize = 3;
+            this.btnOpciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnOpciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpciones.Location = new System.Drawing.Point(35, 175);
+            this.btnOpciones.Name = "btnOpciones";
+            this.btnOpciones.Size = new System.Drawing.Size(144, 43);
+            this.btnOpciones.TabIndex = 19;
+            this.btnOpciones.Text = "OPCIONES";
+            this.btnOpciones.UseVisualStyleBackColor = true;
+            this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnOpciones);
             this.Controls.Add(this.lblFiltroAvanzado);
             this.Controls.Add(this.txtFiltroAvanzado);
             this.Controls.Add(this.cboCriterio);
@@ -252,5 +268,6 @@
         private System.Windows.Forms.Label lblCriterio;
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.Label lblCampo;
+        private System.Windows.Forms.Button btnOpciones;
     }
 }

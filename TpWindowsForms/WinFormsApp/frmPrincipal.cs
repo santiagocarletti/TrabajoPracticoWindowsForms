@@ -111,8 +111,7 @@ namespace WinFormsApp
 
         private void btnListado_Click(object sender, EventArgs e)
         {
-            frmGestionar frmgestionar = new frmGestionar();
-            frmgestionar.ShowDialog();
+            cargar();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -144,6 +143,12 @@ namespace WinFormsApp
             {
                 MessageBox.Show("Ocurrio un error al eliminar el articulo: " + ex.ToString());
             }
+        }
+
+        private void btnOpciones_Click(object sender, EventArgs e)
+        {
+            frmGestionar frmgestionar = new frmGestionar();
+            frmgestionar.ShowDialog();
         }
     }
 }
