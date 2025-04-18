@@ -95,27 +95,6 @@ namespace WinFormsApp
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-
-            try
-            {
-                string campo = cboCampo.SelectedItem.ToString();
-                string criterio = cboCriterio.SelectedItem.ToString();
-                string filtro = txtFiltroAvanzado.Text.ToString();
-
-                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            string consulta;
-
-        }
-
         private void btnListado_Click(object sender, EventArgs e)
         {
             cargar();
@@ -238,6 +217,26 @@ namespace WinFormsApp
             {
                 MessageBox.Show("Por favor, selecciona un artículo de la lista.");
             }
+        }
+
+        private void txtFiltroAvanzado_TextChanged(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text.ToString();
+
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            string consulta;
         }
     }
 }

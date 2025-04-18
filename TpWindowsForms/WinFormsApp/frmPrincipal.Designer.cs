@@ -32,7 +32,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnDetalle = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.lblFiltroAvanzado = new System.Windows.Forms.Label();
@@ -52,9 +51,10 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(12, 16);
+            this.lblTitulo.Location = new System.Drawing.Point(16, 20);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(388, 33);
+            this.lblTitulo.Size = new System.Drawing.Size(490, 42);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "GESTION DE ARTICULOS";
             // 
@@ -67,9 +67,10 @@
             this.btnAgregar.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnAgregar.Location = new System.Drawing.Point(17, 370);
+            this.btnAgregar.Location = new System.Drawing.Point(23, 455);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(100, 45);
+            this.btnAgregar.Size = new System.Drawing.Size(133, 55);
             this.btnAgregar.TabIndex = 6;
             this.btnAgregar.Text = "AGREGAR ";
             this.btnAgregar.UseVisualStyleBackColor = false;
@@ -84,9 +85,10 @@
             this.btnEliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.btnEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnEliminar.Location = new System.Drawing.Point(268, 370);
+            this.btnEliminar.Location = new System.Drawing.Point(357, 455);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(100, 45);
+            this.btnEliminar.Size = new System.Drawing.Size(133, 55);
             this.btnEliminar.TabIndex = 8;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -101,30 +103,14 @@
             this.btnDetalle.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.btnDetalle.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnDetalle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnDetalle.Location = new System.Drawing.Point(577, 370);
+            this.btnDetalle.Location = new System.Drawing.Point(769, 455);
+            this.btnDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetalle.Name = "btnDetalle";
-            this.btnDetalle.Size = new System.Drawing.Size(100, 45);
+            this.btnDetalle.Size = new System.Drawing.Size(133, 55);
             this.btnDetalle.TabIndex = 9;
             this.btnDetalle.Text = "DETALLE";
             this.btnDetalle.UseVisualStyleBackColor = false;
             this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuscar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnBuscar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btnBuscar.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
-            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnBuscar.Location = new System.Drawing.Point(589, 76);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(88, 36);
-            this.btnBuscar.TabIndex = 3;
-            this.btnBuscar.Text = "BUSCAR";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnModificar
             // 
@@ -135,9 +121,10 @@
             this.btnModificar.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.btnModificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnModificar.Location = new System.Drawing.Point(140, 370);
+            this.btnModificar.Location = new System.Drawing.Point(187, 455);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(100, 45);
+            this.btnModificar.Size = new System.Drawing.Size(133, 55);
             this.btnModificar.TabIndex = 7;
             this.btnModificar.Text = "MODIFICAR ";
             this.btnModificar.UseVisualStyleBackColor = false;
@@ -153,14 +140,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvArticulos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvArticulos.Location = new System.Drawing.Point(17, 118);
-            this.dgvArticulos.MinimumSize = new System.Drawing.Size(660, 238);
+            this.dgvArticulos.Location = new System.Drawing.Point(23, 145);
+            this.dgvArticulos.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvArticulos.MinimumSize = new System.Drawing.Size(880, 293);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(660, 238);
+            this.dgvArticulos.Size = new System.Drawing.Size(880, 293);
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvArticulos_DataError);
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
@@ -168,10 +156,9 @@
             // lblFiltroAvanzado
             // 
             this.lblFiltroAvanzado.AutoSize = true;
-            this.lblFiltroAvanzado.Location = new System.Drawing.Point(15, 73);
-            this.lblFiltroAvanzado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFiltroAvanzado.Location = new System.Drawing.Point(494, 97);
             this.lblFiltroAvanzado.Name = "lblFiltroAvanzado";
-            this.lblFiltroAvanzado.Size = new System.Drawing.Size(48, 13);
+            this.lblFiltroAvanzado.Size = new System.Drawing.Size(57, 16);
             this.lblFiltroAvanzado.TabIndex = 18;
             this.lblFiltroAvanzado.Text = "FILTRO:";
             // 
@@ -179,32 +166,32 @@
             // 
             this.txtFiltroAvanzado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFiltroAvanzado.Location = new System.Drawing.Point(17, 88);
-            this.txtFiltroAvanzado.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFiltroAvanzado.Location = new System.Drawing.Point(497, 115);
+            this.txtFiltroAvanzado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtFiltroAvanzado.MaxLength = 15;
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
-            this.txtFiltroAvanzado.Size = new System.Drawing.Size(280, 20);
+            this.txtFiltroAvanzado.Size = new System.Drawing.Size(197, 22);
             this.txtFiltroAvanzado.TabIndex = 0;
+            this.txtFiltroAvanzado.TextChanged += new System.EventHandler(this.txtFiltroAvanzado_TextChanged);
             // 
             // cboCriterio
             // 
             this.cboCriterio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
-            this.cboCriterio.Location = new System.Drawing.Point(454, 88);
-            this.cboCriterio.Margin = new System.Windows.Forms.Padding(2);
+            this.cboCriterio.Location = new System.Drawing.Point(257, 115);
+            this.cboCriterio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCriterio.Name = "cboCriterio";
-            this.cboCriterio.Size = new System.Drawing.Size(107, 21);
+            this.cboCriterio.Size = new System.Drawing.Size(197, 24);
             this.cboCriterio.TabIndex = 2;
             // 
             // lblCriterio
             // 
             this.lblCriterio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCriterio.AutoSize = true;
-            this.lblCriterio.Location = new System.Drawing.Point(451, 73);
-            this.lblCriterio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCriterio.Location = new System.Drawing.Point(253, 97);
             this.lblCriterio.Name = "lblCriterio";
-            this.lblCriterio.Size = new System.Drawing.Size(61, 13);
+            this.lblCriterio.Size = new System.Drawing.Size(73, 16);
             this.lblCriterio.TabIndex = 15;
             this.lblCriterio.Text = "CRITERIO:";
             // 
@@ -213,10 +200,10 @@
             this.cboCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(313, 88);
-            this.cboCampo.Margin = new System.Windows.Forms.Padding(2);
+            this.cboCampo.Location = new System.Drawing.Point(22, 115);
+            this.cboCampo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCampo.Name = "cboCampo";
-            this.cboCampo.Size = new System.Drawing.Size(119, 21);
+            this.cboCampo.Size = new System.Drawing.Size(198, 24);
             this.cboCampo.TabIndex = 1;
             this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
             // 
@@ -224,10 +211,9 @@
             // 
             this.lblCampo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCampo.AutoSize = true;
-            this.lblCampo.Location = new System.Drawing.Point(310, 73);
-            this.lblCampo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCampo.Location = new System.Drawing.Point(18, 97);
             this.lblCampo.Name = "lblCampo";
-            this.lblCampo.Size = new System.Drawing.Size(48, 13);
+            this.lblCampo.Size = new System.Drawing.Size(58, 16);
             this.lblCampo.TabIndex = 13;
             this.lblCampo.Text = "CAMPO:";
             // 
@@ -240,9 +226,10 @@
             this.btnOpciones.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.btnOpciones.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btnOpciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btnOpciones.Location = new System.Drawing.Point(834, 370);
+            this.btnOpciones.Location = new System.Drawing.Point(1112, 455);
+            this.btnOpciones.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpciones.Name = "btnOpciones";
-            this.btnOpciones.Size = new System.Drawing.Size(100, 45);
+            this.btnOpciones.Size = new System.Drawing.Size(133, 55);
             this.btnOpciones.TabIndex = 10;
             this.btnOpciones.Text = "OPCIONES";
             this.btnOpciones.UseVisualStyleBackColor = false;
@@ -252,9 +239,10 @@
             // 
             this.pbxArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbxArticulo.BackColor = System.Drawing.Color.Silver;
-            this.pbxArticulo.Location = new System.Drawing.Point(694, 118);
+            this.pbxArticulo.Location = new System.Drawing.Point(925, 145);
+            this.pbxArticulo.Margin = new System.Windows.Forms.Padding(4);
             this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Size = new System.Drawing.Size(240, 211);
+            this.pbxArticulo.Size = new System.Drawing.Size(320, 260);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxArticulo.TabIndex = 20;
             this.pbxArticulo.TabStop = false;
@@ -265,18 +253,19 @@
             this.cboImagenes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboImagenes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboImagenes.FormattingEnabled = true;
-            this.cboImagenes.Location = new System.Drawing.Point(694, 335);
+            this.cboImagenes.Location = new System.Drawing.Point(925, 412);
+            this.cboImagenes.Margin = new System.Windows.Forms.Padding(4);
             this.cboImagenes.Name = "cboImagenes";
-            this.cboImagenes.Size = new System.Drawing.Size(239, 21);
+            this.cboImagenes.Size = new System.Drawing.Size(317, 24);
             this.cboImagenes.TabIndex = 5;
             this.cboImagenes.SelectedIndexChanged += new System.EventHandler(this.cboImagenes_SelectedIndexChanged);
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(954, 431);
+            this.ClientSize = new System.Drawing.Size(1272, 530);
             this.Controls.Add(this.cboImagenes);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnOpciones);
@@ -288,11 +277,11 @@
             this.Controls.Add(this.lblCampo);
             this.Controls.Add(this.dgvArticulos);
             this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnDetalle);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblTitulo);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPrincipal";
@@ -310,7 +299,6 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnDetalle;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.DataGridView dgvArticulos;
         private System.Windows.Forms.Label lblFiltroAvanzado;
