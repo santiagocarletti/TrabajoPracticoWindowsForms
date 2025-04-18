@@ -9,6 +9,58 @@ namespace negocio
 {
     public class ArticuloNegocio
     {
+
+        public Articulo obtenerPorId(int idArticulo)
+        {
+            AccesoBD datos = new AccesoBD();
+            Articulo articulo = new Articulo();
+
+            try
+            {
+                datos.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, A.Precio, " +
+                                     "C.Descripcion AS Categoria, M.Descripcion AS Marca, I.ImagenUrl " +
+                                     "FROM Articulos A " +
+                                     "LEFT JOIN Categorias C ON A.IdCategoria = C.Id " +
+                                     "LEFT JOIN Marcas M ON A.IdMarca = M.Id " +
+                                     "LEFT JOIN Imagenes I ON I.IdArticulo = A.Id " +
+                                     "WHERE A.Id = @idArticulo");
+                datos.setearParametro("@idArticulo", idArticulo);
+                datos.ejecutarLectura();
+
+                while (datos.Lectorbd.Read())
+                {
+                    articulo.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
+                    articulo.Codigo = Convert.ToString(datos.Lectorbd["Codigo"]);
+                    articulo.Nombre = Convert.ToString(datos.Lectorbd["Nombre"]);
+                    articulo.Descripcion = Convert.ToString(datos.Lectorbd["Descripcion"]);
+                    articulo.Precio = Convert.ToDecimal(datos.Lectorbd["Precio"]);
+
+                    articulo.Marca = new Marca
+                    {
+                        Descripcion = Convert.ToString(datos.Lectorbd["Marca"])
+                    };
+
+                    articulo.Categoria = new Categoria
+                    {
+                        Descripcion = Convert.ToString(datos.Lectorbd["Categoria"])
+                    };
+
+                    // Manejo de imágenes
+                    articulo.Imagen = new List<string>();
+                    articulo.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                }
+
+                return articulo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public List<Articulo> listar()
         {
             List<Articulo> lista = new List<Articulo>();
