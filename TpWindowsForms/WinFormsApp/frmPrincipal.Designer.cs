@@ -42,10 +42,10 @@
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.lblCampo = new System.Windows.Forms.Label();
             this.btnOpciones = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.cboImagenes = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -70,7 +70,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(17, 370);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 45);
-            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.TabIndex = 6;
             this.btnAgregar.Text = "AGREGAR ";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -87,7 +87,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(268, 370);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(100, 45);
-            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.TabIndex = 8;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -104,7 +104,7 @@
             this.btnDetalle.Location = new System.Drawing.Point(577, 370);
             this.btnDetalle.Name = "btnDetalle";
             this.btnDetalle.Size = new System.Drawing.Size(100, 45);
-            this.btnDetalle.TabIndex = 4;
+            this.btnDetalle.TabIndex = 9;
             this.btnDetalle.Text = "DETALLE";
             this.btnDetalle.UseVisualStyleBackColor = false;
             // 
@@ -120,7 +120,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(589, 76);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(88, 36);
-            this.btnBuscar.TabIndex = 5;
+            this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -137,23 +137,32 @@
             this.btnModificar.Location = new System.Drawing.Point(140, 370);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(100, 45);
-            this.btnModificar.TabIndex = 6;
+            this.btnModificar.TabIndex = 7;
             this.btnModificar.Text = "MODIFICAR ";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // dgvArticulos
             // 
+            this.dgvArticulos.AllowUserToAddRows = false;
+            this.dgvArticulos.AllowUserToDeleteRows = false;
+            this.dgvArticulos.AllowUserToResizeRows = false;
             this.dgvArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvArticulos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.Location = new System.Drawing.Point(17, 118);
             this.dgvArticulos.MinimumSize = new System.Drawing.Size(660, 238);
+            this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
+            this.dgvArticulos.ReadOnly = true;
             this.dgvArticulos.RowHeadersWidth = 51;
+            this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(660, 238);
-            this.dgvArticulos.TabIndex = 7;
+            this.dgvArticulos.TabIndex = 4;
+            this.dgvArticulos.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvArticulos_DataError);
+            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // lblFiltroAvanzado
             // 
@@ -174,7 +183,7 @@
             this.txtFiltroAvanzado.MaxLength = 15;
             this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(280, 20);
-            this.txtFiltroAvanzado.TabIndex = 17;
+            this.txtFiltroAvanzado.TabIndex = 0;
             // 
             // cboCriterio
             // 
@@ -185,7 +194,7 @@
             this.cboCriterio.Margin = new System.Windows.Forms.Padding(2);
             this.cboCriterio.Name = "cboCriterio";
             this.cboCriterio.Size = new System.Drawing.Size(107, 21);
-            this.cboCriterio.TabIndex = 16;
+            this.cboCriterio.TabIndex = 2;
             // 
             // lblCriterio
             // 
@@ -207,7 +216,7 @@
             this.cboCampo.Margin = new System.Windows.Forms.Padding(2);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(119, 21);
-            this.cboCampo.TabIndex = 14;
+            this.cboCampo.TabIndex = 1;
             this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
             // 
             // lblCampo
@@ -233,20 +242,21 @@
             this.btnOpciones.Location = new System.Drawing.Point(834, 370);
             this.btnOpciones.Name = "btnOpciones";
             this.btnOpciones.Size = new System.Drawing.Size(100, 45);
-            this.btnOpciones.TabIndex = 19;
+            this.btnOpciones.TabIndex = 10;
             this.btnOpciones.Text = "OPCIONES";
             this.btnOpciones.UseVisualStyleBackColor = false;
             this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
             // 
-            // pictureBox1
+            // pbxArticulo
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Location = new System.Drawing.Point(694, 118);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(240, 211);
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
+            this.pbxArticulo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxArticulo.BackColor = System.Drawing.Color.Silver;
+            this.pbxArticulo.Location = new System.Drawing.Point(694, 118);
+            this.pbxArticulo.Name = "pbxArticulo";
+            this.pbxArticulo.Size = new System.Drawing.Size(240, 211);
+            this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxArticulo.TabIndex = 20;
+            this.pbxArticulo.TabStop = false;
             // 
             // cboImagenes
             // 
@@ -257,7 +267,8 @@
             this.cboImagenes.Location = new System.Drawing.Point(694, 335);
             this.cboImagenes.Name = "cboImagenes";
             this.cboImagenes.Size = new System.Drawing.Size(239, 21);
-            this.cboImagenes.TabIndex = 21;
+            this.cboImagenes.TabIndex = 5;
+            this.cboImagenes.SelectedIndexChanged += new System.EventHandler(this.cboImagenes_SelectedIndexChanged);
             // 
             // frmPrincipal
             // 
@@ -266,7 +277,7 @@
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(954, 431);
             this.Controls.Add(this.cboImagenes);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.btnOpciones);
             this.Controls.Add(this.lblFiltroAvanzado);
             this.Controls.Add(this.txtFiltroAvanzado);
@@ -282,10 +293,11 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblTitulo);
             this.Name = "frmPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPrincipal";
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,7 +319,7 @@
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.Label lblCampo;
         private System.Windows.Forms.Button btnOpciones;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbxArticulo;
         private System.Windows.Forms.ComboBox cboImagenes;
     }
 }

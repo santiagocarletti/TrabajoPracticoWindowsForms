@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocio;
 using dominio;
+using System.Security.Policy;
 
 namespace WinFormsApp
 {
@@ -17,6 +18,11 @@ namespace WinFormsApp
         public frmPrincipal()
         {
             InitializeComponent();
+
+
+
+
+
         }
 
         private void cargar()
@@ -26,7 +32,6 @@ namespace WinFormsApp
             {
                 dgvArticulos.DataSource = negocio.listar();
                 ocultarColumnas();
-
             }
             catch (Exception ex)
             {
@@ -38,7 +43,6 @@ namespace WinFormsApp
         private void ocultarColumnas()
         {
             dgvArticulos.Columns["Id"].Visible = false;
-
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
@@ -49,6 +53,8 @@ namespace WinFormsApp
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Marca");
             cboCampo.Items.Add("Precio");
+
+            ocultarColumnas();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -150,6 +156,61 @@ namespace WinFormsApp
         {
             frmGestionar frmgestionar = new frmGestionar();
             frmgestionar.ShowDialog();
+        }
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            CargarListaImagenes();
+
+            if (cboImagenes.Items.Count > 0)
+            {
+                cboImagenes.SelectedIndex = 0;
+                CargarImagen((string)cboImagenes.Items[0]);
+            }
+
+        }
+
+        private void CargarListaImagenes()
+        {
+
+
+
+            if (dgvArticulos.CurrentRow == null)
+            { return; }
+
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            cboImagenes.Items.Clear();
+
+            foreach (string Image in seleccionado.Imagen)
+            {
+                cboImagenes.Items.Add(Image);
+            }
+        }
+
+        private void CargarImagen(string url)
+        {
+            try
+            {
+                pbxArticulo.Load(url);
+            }
+            catch (Exception)
+            {
+                pbxArticulo.Load("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930");
+            }
+        }
+
+        private void cboImagenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarImagen((string)cboImagenes.SelectedItem);
+        }
+
+
+        //si se borra una marca o una cat, la datagrid tira error de nulo en los datos
+        //esto es p q no salte el error ese td el tiempo
+        private void dgvArticulos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }
