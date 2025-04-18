@@ -37,7 +37,7 @@ namespace WinFormsApp
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["Id"].Visible = true;
+            dgvArticulos.Columns["Id"].Visible = false;
 
         }
 
@@ -67,6 +67,7 @@ namespace WinFormsApp
                 frmModificar modificar = new frmModificar(seleccionado);
                 modificar.ShowDialog();
             }
+            cargar();
         }
 
         private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
