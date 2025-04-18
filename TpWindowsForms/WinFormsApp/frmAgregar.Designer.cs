@@ -228,6 +228,7 @@
             // lblErrorCodigo
             // 
             this.lblErrorCodigo.AutoSize = true;
+            this.lblErrorCodigo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblErrorCodigo.Location = new System.Drawing.Point(234, 65);
             this.lblErrorCodigo.Name = "lblErrorCodigo";
             this.lblErrorCodigo.Size = new System.Drawing.Size(17, 13);
@@ -237,6 +238,7 @@
             // lblErrorNombre
             // 
             this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.IndianRed;
             this.lblErrorNombre.Location = new System.Drawing.Point(336, 91);
             this.lblErrorNombre.Name = "lblErrorNombre";
             this.lblErrorNombre.Size = new System.Drawing.Size(17, 13);
@@ -246,6 +248,7 @@
             // lblErrorPrecio
             // 
             this.lblErrorPrecio.AutoSize = true;
+            this.lblErrorPrecio.ForeColor = System.Drawing.Color.IndianRed;
             this.lblErrorPrecio.Location = new System.Drawing.Point(214, 283);
             this.lblErrorPrecio.Name = "lblErrorPrecio";
             this.lblErrorPrecio.Size = new System.Drawing.Size(79, 13);
@@ -255,6 +258,7 @@
             // lblCamposObligatorios
             // 
             this.lblCamposObligatorios.AutoSize = true;
+            this.lblCamposObligatorios.ForeColor = System.Drawing.Color.IndianRed;
             this.lblCamposObligatorios.Location = new System.Drawing.Point(45, 310);
             this.lblCamposObligatorios.Name = "lblCamposObligatorios";
             this.lblCamposObligatorios.Size = new System.Drawing.Size(114, 13);
@@ -322,7 +326,6 @@
             this.Controls.Add(this.pbxArticulo);
             this.Name = "frmAgregar";
             this.Text = "Agregar";
-            this.Load += new System.EventHandler(this.frmAgregar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
