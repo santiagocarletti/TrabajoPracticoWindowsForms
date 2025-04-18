@@ -277,6 +277,7 @@
             this.btnEliminarImagen.TabIndex = 43;
             this.btnEliminarImagen.Text = "Eliminar";
             this.btnEliminarImagen.UseVisualStyleBackColor = true;
+            this.btnEliminarImagen.Click += new System.EventHandler(this.btnEliminarImagen_Click_1);
             // 
             // btnAgregarImagen
             // 

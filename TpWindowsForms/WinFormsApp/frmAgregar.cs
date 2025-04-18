@@ -85,40 +85,7 @@ namespace WinFormsApp
             CargarImagen(nuevaImagen);
         }
 
-        private void btnEliminarImagen_Click(object sender, EventArgs e)
-        {
-            
-            if (cboImagenes.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccioná una imagen para eliminar.");
-                return;
-            }
-
-           
-            int indice = cboImagenes.SelectedIndex;
-
-            
-            cboImagenes.Items.RemoveAt(indice);
-
-           
-            if (indice >= 0 && indice < articulo.Imagen.Count)
-            {
-                articulo.Imagen.RemoveAt(indice);
-            }
-
-            
-            if (cboImagenes.Items.Count > 0)
-            {
-                cboImagenes.SelectedIndex = 0;
-                CargarImagen(cboImagenes.SelectedItem.ToString());
-            }
-            else
-            {
-                
-                cboImagenes.Text = "";
-                pbxArticulo.Image = null;
-            }
-        }
+      
         private void txtImagen_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtImagen.Text)) 
@@ -143,7 +110,11 @@ namespace WinFormsApp
                 return;
             }
 
+          
+
             AgregarArticuloBD();
+           
+
         }
 
         private void AgregarArticuloBD()
@@ -222,6 +193,28 @@ namespace WinFormsApp
 
         }
 
-      
+        private void btnEliminarImagen_Click_1(object sender, EventArgs e)
+        {
+             if (cboImagenes.SelectedIndex == -1) 
+            {
+                MessageBox.Show("Seleccioná una imagen para eliminar."); 
+                return;
+            }
+
+            int indice = cboImagenes.SelectedIndex;
+
+            cboImagenes.Items.RemoveAt(indice); 
+
+            if (cboImagenes.Items.Count > 0) 
+            {
+                cboImagenes.SelectedIndex = 0; 
+            }
+            else
+            {
+                cboImagenes.Text = ""; 
+                pbxArticulo.Image = null; 
+            }
+
+        }
     }
 }
