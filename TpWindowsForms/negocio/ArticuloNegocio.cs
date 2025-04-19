@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -98,19 +99,22 @@ namespace negocio
 
                 datos.ejecutarLectura();
 
-                int IdUltimoarticulo = 0;
+                Articulo ultCarga = null;
 
                 while (datos.Lectorbd.Read())
                 {
-                    Articulo aux = new Articulo();
-                    aux.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
+                    int idArtBD = Convert.ToInt32(datos.Lectorbd["Id"]);
 
-                    if (aux.Id == IdUltimoarticulo && lista.Count > IdUltimoarticulo - 1)
+                    //para no cargar duplicado, si es el mismo solo agrego imagen
+                    if (ultCarga != null && ultCarga.Id == idArtBD)
                     {
-                        lista[IdUltimoarticulo - 1].Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                        string imagenUrl = Convert.ToString(datos.Lectorbd["ImagenUrl"]);
+                        ultCarga.Imagen.Add(imagenUrl);
                         continue;
                     }
 
+                    Articulo aux = new Articulo();
+                    aux.Id = idArtBD;
                     aux.Codigo = Convert.ToString(datos.Lectorbd["Codigo"]);
                     aux.Nombre = Convert.ToString(datos.Lectorbd["Nombre"]);
                     aux.Descripcion = Convert.ToString(datos.Lectorbd["Descripcion"]);
@@ -125,12 +129,9 @@ namespace negocio
                     else
                     {
                         aux.Marca.Id = 0;
-                        //aux.Marca.Descripcion = "Sin Descripcion";
                     }
 
                     aux.Categoria = new Categoria();
-
-
                     if (datos.Lectorbd["IdCategoria"] != DBNull.Value)
                     {
                         aux.Categoria.Id = Convert.ToInt32(datos.Lectorbd["IdCategoria"]);
@@ -139,22 +140,17 @@ namespace negocio
                     else
                     {
                         aux.Categoria.Id = 0;
-                        //aux.Categoria.Descripcion = "Sin Categoria";
                     }
                     
                     aux.Precio = Decimal.Round(Convert.ToDecimal(datos.Lectorbd["Precio"]), 2);
 
                     aux.Imagen = new List<string>();
                     aux.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
-                    IdUltimoarticulo = aux.Id;
-
-
                     aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
-                    //aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
 
                     lista.Add(aux);
+                    ultCarga = aux;
                 }
-
                 return lista;
             }
             catch (Exception ex)
@@ -172,8 +168,14 @@ namespace negocio
             AccesoBD datos = new AccesoBD();
             try
             {
+                //datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) " +
+                //                     "VALUES (@codigo, @nombre, @descripcion, @precio, @idMarca, @idCategoria)");
+
                 datos.setearConsulta("INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) " +
-                                     "VALUES (@codigo, @nombre, @descripcion, @precio, @idMarca, @idCategoria)");
+                                     "VALUES (@codigo, @nombre, @descripcion, @precio, @idMarca, @idCategoria); " +
+                                     "SELECT SCOPE_IDENTITY();"
+                                    );
+
 
                 datos.setearParametro("@codigo", newArticulo.Codigo);
                 datos.setearParametro("@nombre", newArticulo.Nombre);
@@ -182,7 +184,30 @@ namespace negocio
                 datos.setearParametro("@idMarca", newArticulo.Marca.Id);
                 datos.setearParametro("@idCategoria", newArticulo.Categoria.Id);
 
-                datos.ejecutarAccion();
+                //el ej accion con return da el id pero el id de la bd, el q asigfna automaticamente
+                //q lo necesitamos para agregar las imagenes
+                //se le agrego a la consulta:
+                // SELECT SCOPE_IDENTITY(); devuelve el último ID autogenerado(IDENTITY) insertado en la misma conexión y el mismo scope.
+                //                          Se usa después de un INSERT para obtener el ID recién creado.
+                //SIN el scope devolvia null 
+
+                newArticulo.Id = datos.ejecutarAccionconreturn();
+
+                datos.limpiarParametros();
+
+                //no hace falta borrar imahenes cono con el modi, pq el id no tiene ninguna
+                //por cada imagen cargada en la lsita, insert a la bd tabla de imagenes
+                foreach (string imagen in newArticulo.Imagen)
+                {
+                    if (imagen == "")
+                    { continue; }
+                    datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo, ImagenUrl) VALUES (@idarticulo, @imagenurl)");
+                    datos.setearParametro("@imagenurl", imagen);
+                    datos.setearParametro("@idarticulo", newArticulo.Id);
+                    datos.ejecutarMasAcciones();
+                    datos.limpiarParametros();
+                }
+
             }
             catch (Exception ex)
             {
@@ -377,19 +402,22 @@ namespace negocio
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
-                int IdUltimoarticulo = 0;
+                Articulo ultCarga = null;
 
                 while (datos.Lectorbd.Read())
                 {
-                    Articulo aux = new Articulo();
-                    aux.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
+                    int idArtBD = Convert.ToInt32(datos.Lectorbd["Id"]);
 
-                    if (aux.Id == IdUltimoarticulo && lista.Count > IdUltimoarticulo - 1)
+                    //para no cargar duplicado, si es el mismo solo agrego imagen
+                    if (ultCarga != null && ultCarga.Id == idArtBD)
                     {
-                        lista[IdUltimoarticulo - 1].Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                        string imagenUrl = Convert.ToString(datos.Lectorbd["ImagenUrl"]);
+                        ultCarga.Imagen.Add(imagenUrl);
                         continue;
                     }
 
+                    Articulo aux = new Articulo();
+                    aux.Id = idArtBD;
                     aux.Codigo = Convert.ToString(datos.Lectorbd["Codigo"]);
                     aux.Nombre = Convert.ToString(datos.Lectorbd["Nombre"]);
                     aux.Descripcion = Convert.ToString(datos.Lectorbd["Descripcion"]);
@@ -404,12 +432,9 @@ namespace negocio
                     else
                     {
                         aux.Marca.Id = 0;
-                        //aux.Marca.Descripcion = "Sin Descripcion";
                     }
 
                     aux.Categoria = new Categoria();
-
-
                     if (datos.Lectorbd["IdCategoria"] != DBNull.Value)
                     {
                         aux.Categoria.Id = Convert.ToInt32(datos.Lectorbd["IdCategoria"]);
@@ -418,22 +443,17 @@ namespace negocio
                     else
                     {
                         aux.Categoria.Id = 0;
-                        //aux.Categoria.Descripcion = "Sin Categoria";
                     }
 
                     aux.Precio = Decimal.Round(Convert.ToDecimal(datos.Lectorbd["Precio"]), 2);
 
                     aux.Imagen = new List<string>();
                     aux.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
-                    IdUltimoarticulo = aux.Id;
-
-
                     aux.Precio = Decimal.Round((decimal)datos.Lectorbd["Precio"], 2);
-                    //aux.Imagen = (string)datos.Lectorbd["ImagenUrl"];
 
                     lista.Add(aux);
+                    ultCarga = aux;
                 }
-
                 return lista;
             }
             catch (Exception ex)

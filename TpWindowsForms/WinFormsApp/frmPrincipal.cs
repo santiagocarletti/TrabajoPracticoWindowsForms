@@ -56,7 +56,7 @@ namespace WinFormsApp
         {
             frmAgregar alta = new frmAgregar();
             alta.ShowDialog();
-
+            cargar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

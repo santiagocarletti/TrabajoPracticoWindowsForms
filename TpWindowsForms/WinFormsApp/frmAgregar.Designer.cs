@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.BotonExaminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtImagen = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -59,27 +58,18 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(48, 339);
+            this.btnAceptar.Location = new System.Drawing.Point(100, 339);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(89, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(121, 23);
             this.btnAceptar.TabIndex = 27;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // BotonExaminar
-            // 
-            this.BotonExaminar.Location = new System.Drawing.Point(466, 280);
-            this.BotonExaminar.Name = "BotonExaminar";
-            this.BotonExaminar.Size = new System.Drawing.Size(32, 20);
-            this.BotonExaminar.TabIndex = 23;
-            this.BotonExaminar.Text = "+";
-            this.BotonExaminar.UseVisualStyleBackColor = true;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(158, 339);
+            this.btnCancelar.Location = new System.Drawing.Point(241, 339);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(93, 23);
             this.btnCancelar.TabIndex = 29;
@@ -89,7 +79,7 @@
             // 
             // txtImagen
             // 
-            this.txtImagen.Location = new System.Drawing.Point(76, 181);
+            this.txtImagen.Location = new System.Drawing.Point(100, 181);
             this.txtImagen.Name = "txtImagen";
             this.txtImagen.Size = new System.Drawing.Size(230, 20);
             this.txtImagen.TabIndex = 22;
@@ -97,7 +87,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(76, 280);
+            this.txtPrecio.Location = new System.Drawing.Point(100, 276);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(121, 20);
             this.txtPrecio.TabIndex = 26;
@@ -107,7 +97,7 @@
             this.cboCategoria.AllowDrop = true;
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategoria.FormattingEnabled = true;
-            this.cboCategoria.Location = new System.Drawing.Point(76, 244);
+            this.cboCategoria.Location = new System.Drawing.Point(100, 239);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(121, 21);
             this.cboCategoria.TabIndex = 25;
@@ -117,7 +107,7 @@
             this.cboMarca.AllowDrop = true;
             this.cboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMarca.FormattingEnabled = true;
-            this.cboMarca.Location = new System.Drawing.Point(76, 207);
+            this.cboMarca.Location = new System.Drawing.Point(100, 210);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(121, 21);
             this.cboMarca.TabIndex = 24;
@@ -134,7 +124,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 283);
+            this.label6.Location = new System.Drawing.Point(21, 279);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 35;
@@ -143,7 +133,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 247);
+            this.label5.Location = new System.Drawing.Point(21, 242);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 34;
@@ -152,7 +142,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 210);
+            this.label4.Location = new System.Drawing.Point(21, 213);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 33;
@@ -208,7 +198,7 @@
             // 
             // pbxArticulo
             // 
-            this.pbxArticulo.Location = new System.Drawing.Point(410, 75);
+            this.pbxArticulo.Location = new System.Drawing.Point(431, 65);
             this.pbxArticulo.Name = "pbxArticulo";
             this.pbxArticulo.Size = new System.Drawing.Size(228, 190);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -234,6 +224,7 @@
             this.lblErrorCodigo.Size = new System.Drawing.Size(17, 13);
             this.lblErrorCodigo.TabIndex = 38;
             this.lblErrorCodigo.Text = "(*)";
+            this.lblErrorCodigo.Visible = false;
             // 
             // lblErrorNombre
             // 
@@ -244,38 +235,42 @@
             this.lblErrorNombre.Size = new System.Drawing.Size(17, 13);
             this.lblErrorNombre.TabIndex = 39;
             this.lblErrorNombre.Text = "(*)";
+            this.lblErrorNombre.Visible = false;
             // 
             // lblErrorPrecio
             // 
             this.lblErrorPrecio.AutoSize = true;
             this.lblErrorPrecio.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblErrorPrecio.Location = new System.Drawing.Point(214, 283);
+            this.lblErrorPrecio.Location = new System.Drawing.Point(238, 279);
             this.lblErrorPrecio.Name = "lblErrorPrecio";
             this.lblErrorPrecio.Size = new System.Drawing.Size(79, 13);
             this.lblErrorPrecio.TabIndex = 40;
             this.lblErrorPrecio.Text = "Campo invalido";
+            this.lblErrorPrecio.Visible = false;
             // 
             // lblCamposObligatorios
             // 
             this.lblCamposObligatorios.AutoSize = true;
             this.lblCamposObligatorios.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblCamposObligatorios.Location = new System.Drawing.Point(45, 310);
+            this.lblCamposObligatorios.Location = new System.Drawing.Point(23, 313);
             this.lblCamposObligatorios.Name = "lblCamposObligatorios";
             this.lblCamposObligatorios.Size = new System.Drawing.Size(114, 13);
             this.lblCamposObligatorios.TabIndex = 41;
             this.lblCamposObligatorios.Text = "(*) Campos obligatorios";
+            this.lblCamposObligatorios.Visible = false;
             // 
             // cboImagenes
             // 
+            this.cboImagenes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboImagenes.FormattingEnabled = true;
-            this.cboImagenes.Location = new System.Drawing.Point(76, 147);
+            this.cboImagenes.Location = new System.Drawing.Point(100, 147);
             this.cboImagenes.Name = "cboImagenes";
             this.cboImagenes.Size = new System.Drawing.Size(230, 21);
             this.cboImagenes.TabIndex = 42;
             // 
             // btnEliminarImagen
             // 
-            this.btnEliminarImagen.Location = new System.Drawing.Point(312, 147);
+            this.btnEliminarImagen.Location = new System.Drawing.Point(336, 147);
             this.btnEliminarImagen.Name = "btnEliminarImagen";
             this.btnEliminarImagen.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarImagen.TabIndex = 43;
@@ -285,7 +280,7 @@
             // 
             // btnAgregarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(312, 179);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(336, 179);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarImagen.TabIndex = 44;
@@ -297,7 +292,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 374);
+            this.ClientSize = new System.Drawing.Size(671, 384);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.btnEliminarImagen);
             this.Controls.Add(this.cboImagenes);
@@ -307,7 +302,6 @@
             this.Controls.Add(this.lblErrorCodigo);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.BotonExaminar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtImagen);
             this.Controls.Add(this.txtPrecio);
@@ -324,7 +318,10 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.pbxArticulo);
+            this.MaximumSize = new System.Drawing.Size(687, 423);
+            this.MinimumSize = new System.Drawing.Size(687, 423);
             this.Name = "frmAgregar";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar";
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
@@ -335,7 +332,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button BotonExaminar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtImagen;
         private System.Windows.Forms.TextBox txtPrecio;
