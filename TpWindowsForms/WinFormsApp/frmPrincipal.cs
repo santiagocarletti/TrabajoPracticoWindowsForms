@@ -18,11 +18,6 @@ namespace WinFormsApp
         public frmPrincipal()
         {
             InitializeComponent();
-
-
-
-
-
         }
 
         private void cargar()
@@ -53,7 +48,7 @@ namespace WinFormsApp
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Marca");
             cboCampo.Items.Add("Precio");
-
+            cboCampo.SelectedIndex = 0;
             ocultarColumnas();
         }
 
@@ -93,6 +88,7 @@ namespace WinFormsApp
                 cboCriterio.Items.Add("Termina con");
                 cboCriterio.Items.Add("Contiene");
             }
+            cboCriterio.SelectedIndex = 0;
         }
 
         private void btnListado_Click(object sender, EventArgs e)
