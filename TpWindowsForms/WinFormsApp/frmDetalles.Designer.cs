@@ -91,11 +91,13 @@
             // 
             // cboImagenes
             // 
+            this.cboImagenes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboImagenes.FormattingEnabled = true;
             this.cboImagenes.Location = new System.Drawing.Point(328, 80);
             this.cboImagenes.Name = "cboImagenes";
             this.cboImagenes.Size = new System.Drawing.Size(256, 21);
             this.cboImagenes.TabIndex = 6;
+            this.cboImagenes.SelectedIndexChanged += new System.EventHandler(this.cboImagenes_SelectedIndexChanged_1);
             // 
             // lblTitulo
             // 
@@ -112,6 +114,7 @@
             this.pbxArticulo.Location = new System.Drawing.Point(328, 120);
             this.pbxArticulo.Name = "pbxArticulo";
             this.pbxArticulo.Size = new System.Drawing.Size(256, 221);
+            this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxArticulo.TabIndex = 8;
             this.pbxArticulo.TabStop = false;
             // 

@@ -1,5 +1,6 @@
 ﻿using dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,16 @@ namespace negocio
                 datos.setearParametro("@idArticulo", idArticulo);
                 datos.ejecutarLectura();
 
+                bool banderaImagenes = false;
+
                 while (datos.Lectorbd.Read())
                 {
+                    if (banderaImagenes)
+                    {
+                        articulo.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+                        continue;
+                    }
+
                     articulo.Id = Convert.ToInt32(datos.Lectorbd["Id"]);
                     articulo.Codigo = Convert.ToString(datos.Lectorbd["Codigo"]);
                     articulo.Nombre = Convert.ToString(datos.Lectorbd["Nombre"]);
@@ -48,6 +57,8 @@ namespace negocio
                     // Manejo de imágenes
                     articulo.Imagen = new List<string>();
                     articulo.Imagen.Add(Convert.ToString(datos.Lectorbd["ImagenUrl"]));
+
+                    banderaImagenes = true;
                 }
 
                 return articulo;

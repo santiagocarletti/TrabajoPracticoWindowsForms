@@ -122,5 +122,10 @@ namespace WinFormsApp
         {
             Close();
         }
+
+        private void cboImagenes_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            CargarImagen(cboImagenes.SelectedItem.ToString());
+        }
     }
 }
