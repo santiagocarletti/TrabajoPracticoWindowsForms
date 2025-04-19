@@ -218,25 +218,59 @@ namespace WinFormsApp
                 MessageBox.Show("Por favor, selecciona un artículo de la lista.");
             }
         }
-
+        private bool validarFiltro()
+        {
+            if (cboCampo.SelectedIndex < 0 || cboCriterio.SelectedIndex < 0)
+            {
+                if (txtFiltroAvanzado.Text.Length > 0) { MessageBox.Show("Búsqueda incompleta"); }
+                return true;
+            }
+            if (cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    if (txtFiltroAvanzado.Text.Length > 0) { MessageBox.Show("Ingrese solo números"); }
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+                if (!(char.IsNumber(caracter)))
+                    return false;
+            }
+            return true;
+        }
         private void txtFiltroAvanzado_TextChanged(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
             {
+                if (string.IsNullOrWhiteSpace(txtFiltroAvanzado.Text))
+                {
+                    cargar();
+                    return;
+                }
+
+                if (validarFiltro())
+                {
+                    return;
+                }
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
-                string filtro = txtFiltroAvanzado.Text.ToString();
+                string filtro = txtFiltroAvanzado.Text;
 
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            string consulta;
         }
     }
 }

@@ -130,7 +130,7 @@ namespace negocio
                         aux.Categoria.Id = 0;
                         //aux.Categoria.Descripcion = "Sin Categoria";
                     }
-
+                    
                     aux.Precio = Decimal.Round(Convert.ToDecimal(datos.Lectorbd["Precio"]), 2);
 
                     aux.Imagen = new List<string>();
