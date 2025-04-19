@@ -21,9 +21,9 @@ namespace negocio
         public AccesoBD()
         {
             //FRAN - SANTIAGO
-            //conexionbd = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
+            conexionbd = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true");
             //NICO
-            conexionbd = new SqlConnection("server=127.0.0.1,1433; database=CATALOGO_P3_DB; User ID=sa; Password=BaseDeDatos#2;");
+            //conexionbd = new SqlConnection("server=127.0.0.1,1433; database=CATALOGO_P3_DB; User ID=sa; Password=BaseDeDatos#2;");
             comando = new SqlCommand();
         }
 
